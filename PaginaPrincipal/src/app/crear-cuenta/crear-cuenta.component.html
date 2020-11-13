@@ -1,12 +1,12 @@
 
 <div class="col-6 mx-auto">
     <h1>Registro de deportistas</h1>
-<form>
+  <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
     <div class="form-group">
     <label for="exampleInputEmail1">Nombre:</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+      <input type="text" id="name" name="name"><br>
     </div>
-    <div class="form-group">
+    <!--<div class="form-group">
     <label for="exampleInputEmail1">Fecha de nacimiento:</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
     </div>
@@ -24,10 +24,10 @@
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Contraseña:</label>
-      <input type="password" class="form-control" id="exampleInputPassword1"  >
-    </div>
-    <!--(click)="registro()"-->
-    <button type="submit"  class="btn btn-light page-button" [routerLink]="['/']">Enviar</button>
+      <input type="password" class="form-control" id="exampleInputPassword1"  
+    </div>-->
+
+    <button class="btn btn-success btn-lg btn-block" type="submit">Submit</button>
   </form>
   <br>
   <br>
