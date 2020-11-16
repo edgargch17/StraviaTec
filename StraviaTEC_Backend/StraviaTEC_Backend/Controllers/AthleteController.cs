@@ -8,6 +8,7 @@ using StraviaTEC_Backend.Models;
 using StraviaTEC_Backend.Controllers;
 using Microsoft.AspNetCore.Http;
 using StraviaTEC_Backend.DataBaseAccess;
+using System.Reflection;
 //using Npgsql;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,8 +16,8 @@ using StraviaTEC_Backend.DataBaseAccess;
 namespace StraviaTEC.Controllers
 {
     //[Produces ("application/json")]
-    [Route("api/athlete")]
     //[ApiController]
+    [Route("api/athlete")]
     public class AthleteController : ControllerBase
     {
         //private readonly DataBaseHandler dataBaseHandler;
@@ -24,11 +25,8 @@ namespace StraviaTEC.Controllers
 
         // GET: api/<DeportistaController>
         [HttpGet]
-        public IEnumerable<Athlete> Get()
-        //public void getAthletes()
+        public IEnumerable<Athlete> getAthletes()
         {
-
-            //return dataBaseHandler.readFromDataBase(DataBaseConstants.athlete, "*");
             return dataBaseHandler.readFromDataBase(DataBaseConstants.athlete, "*");
         }
 
@@ -46,7 +44,26 @@ namespace StraviaTEC.Controllers
         {
             if (ModelState.IsValid)
             {
-                athlete.setAge();
+                if (athlete.username == null)
+                {
+                    return BadRequest();
+                }
+                if (athlete.birth_date != DateTime.MinValue)
+                {
+                    athlete.setAge();
+                }
+                if (athlete.password == null)
+                {
+                    return BadRequest();
+                }
+                if (athlete.name == null)
+                {
+                    return BadRequest();
+                }
+                if (athlete.last_name == null)
+                {
+                    return BadRequest();
+                }
                 dataBaseHandler.insertDataBase(DataBaseConstants.athlete, 
                     "username, password, name, last_name, nationality, birth_date, photo, age", 
                     athlete.username + "','" + 
@@ -67,33 +84,79 @@ namespace StraviaTEC.Controllers
 
         // PUT api/<DeportistaController>/5
         [HttpPut("{username}")]
-        public void putAthlete(string username, [FromBody] Athlete athlete)
+        public IActionResult putAthlete(string username, [FromBody] Athlete athlete)
         {
-            /*var model = athlete.username + "','" +
-                    athlete.password + "','" +
-                    athlete.name + "','" +
-                    athlete.last_name + "','" +
-                    athlete.nationality + "','" +
-                    athlete.birth_date + "','" +
-                    athlete.photo + "','" +
-                    athlete.getAge();*/
-            dataBaseHandler.updateDataBase(DataBaseConstants.athlete,
-                "username, password, name, last_name, nationality, birth_date, photo, age",
-                athlete.username + "','" +
-                athlete.password + "','" +
-                athlete.name + "','" +
-                athlete.last_name + "','" +
-                athlete.nationality + "','" +
-                athlete.birth_date + "','" +
-                athlete.photo + "'," +
-                athlete.getAge()," username = '" + username +"'");
+            try
+            {
+                string attribsToModify = "username = '" + athlete.username;
+                if (username.Equals(athlete.username))
+                {
+                    if (athlete.password != null)
+                    {
+                        if (!((athlete.password).Equals("")))
+                        {
+                            attribsToModify = attribsToModify + "', password = '" + athlete.password;
+                        }
+                    }
+                    if (athlete.name != null)
+                    {
+                        if (!((athlete.name).Equals("")))
+                        {
+                            attribsToModify = attribsToModify + "', name = '" + athlete.name;
+                        }
+                    }
+                    if (athlete.last_name != null)
+                    {
+                        if (!((athlete.last_name).Equals("")))
+                        {
+                            attribsToModify = attribsToModify + "', last_name = '" + athlete.last_name;
+                        }
+                    }
+                    if (athlete.nationality != null)
+                    {
+                        if (!((athlete.nationality).Equals("")))
+                        {
+                            attribsToModify = attribsToModify + "', nationality = '" + athlete.nationality;
+                        }
+                    }
+                    if (athlete.photo != null)
+                    {
+                        if (!((athlete.photo).Equals("")))
+                        {
+                            attribsToModify = attribsToModify + "', photo = '" + athlete.photo;
+                        }
+                    }
+                    if (athlete.birth_date != DateTime.MinValue)
+                    {
+                        athlete.setAge();
+                        attribsToModify = attribsToModify + "', birth_date = '" + athlete.birth_date + "', age = " + athlete.getAge(); ;
+                    }
+
+                    dataBaseHandler.updateDataBase(DataBaseConstants.athlete, attribsToModify, "username = '" + athlete.username + "'");
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }catch (Exception e)
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE api/<DeportistaController>/5
         [HttpDelete("{username}")]
-        public void deleteAthlete(string username)
+        public IActionResult deleteAthlete(string username)
         {
-            dataBaseHandler.deleteFromDataBase(DataBaseConstants.athlete, "username = '" + username + "'");
+            if(dataBaseHandler.deleteFromDataBase(DataBaseConstants.athlete, "username = '" + username + "'"))
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }

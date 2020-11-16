@@ -45,7 +45,7 @@ namespace StraviaTEC_Backend.DataBaseAccess
                        });
                 }
             }
-            catch (Exception e)
+            catch //(Exception e)
             {
 
             }
@@ -58,7 +58,7 @@ namespace StraviaTEC_Backend.DataBaseAccess
         /**<param name="tableRequest"> TABLE TO INSERT DATA </param>**/
         /**<param name="attributes"> ATTRIBUTES TO BE ADDED </param>**/
         /**<param name="dataInsertion"> DATA TO INSERT </param>**/
-        public void insertDataBase(string tableRequest, string attributes, string dataInsertion)
+        public bool insertDataBase(string tableRequest, string attributes, string dataInsertion)
         {
             try
             {
@@ -69,9 +69,11 @@ namespace StraviaTEC_Backend.DataBaseAccess
                 commaandRequest.CommandText = "INSERT INTO " + tableRequest + "(" + attributes + ") VALUES('" + dataInsertion + "')";
                 commaandRequest.ExecuteNonQuery();
                 connection.Close();
+                return true;
             }
-            catch(Exception e)
+            catch //(Exception e)
             {
+                return false;
             }
         }
 
@@ -81,30 +83,46 @@ namespace StraviaTEC_Backend.DataBaseAccess
         /**<param name="attribToModify"> ATRIBUTE TO MODIFY IN A TABLE </param>**/
         /**<param name="dataInsertion"> NEW VALUE TO A ATRIBUTE IN ROW </param>**/
         /**<param name="conditionAttrib"> ATTRIBUTE AND CONDITION VALUE TO UPDATE TABLE </param>**/
-        public void updateDataBase(string tableRequest, string attribToModify, string dataInsertion, string conditionAttrib)
+        public bool updateDataBase(string tableRequest, string attribToModifyInsertion, string conditionAttrib)
         {
-            NpgsqlConnection connection = new NpgsqlConnection(DataBaseConstants.dataBaseConnection);
-            connection.Open();
-            using var commandRequest = new NpgsqlCommand();
-            commandRequest.Connection = connection;
-            commandRequest.CommandText = "UPDATE " + tableRequest + " SET " + attribToModify +" = " + dataInsertion + " WHERE " + conditionAttrib;
-            commandRequest.ExecuteNonQuery();
-            connection.Close();
+            try
+            {
+                NpgsqlConnection connection = new NpgsqlConnection(DataBaseConstants.dataBaseConnection);
+                connection.Open();
+                using var commandRequest = new NpgsqlCommand();
+                commandRequest.Connection = connection;
+                commandRequest.CommandText = "UPDATE " + tableRequest + " SET " + attribToModifyInsertion + " WHERE " + conditionAttrib;
+                commandRequest.ExecuteNonQuery();
+                connection.Close();
+                return true;
+            }
+            catch //(Exception e)
+            {
+                return false;
+            }
         }
 
         /**************** DELETE ***************************/
         /**<summary> DELETE ROWS IN DATABASE TABLE </summary>**/
         /**<param name="tableRequest"> TABLE TO SEARCH DELETE CONDITION </param>**/
         /**<param name="conditionAttrib"> SET A CONDITION TO DELETE A ROW IN DATABASE </param>**/
-        public void deleteFromDataBase(string tableRequest, string conditionAttrib)
+        public bool deleteFromDataBase(string tableRequest, string conditionAttrib)
         {
-            NpgsqlConnection connection = new NpgsqlConnection(DataBaseConstants.dataBaseConnection);
-            connection.Open();
-            using var commandRequest = new NpgsqlCommand();
-            commandRequest.Connection = connection;
-            commandRequest.CommandText = "DELETE FROM " + tableRequest + " WHERE " + conditionAttrib;
-            commandRequest.ExecuteNonQuery();
-            connection.Close();
+            try
+            {
+                NpgsqlConnection connection = new NpgsqlConnection(DataBaseConstants.dataBaseConnection);
+                connection.Open();
+                using var commandRequest = new NpgsqlCommand();
+                commandRequest.Connection = connection;
+                commandRequest.CommandText = "DELETE FROM " + tableRequest + " WHERE " + conditionAttrib;
+                commandRequest.ExecuteNonQuery();
+                connection.Close();
+                return true;
+            }
+            catch //(Exception e)
+            {
+                return false;
+            }
         }
     }
 }
