@@ -1,0 +1,124 @@
+<div class="d-flex flex-row bd-highlight justify-content-around" >
+  <div class="col-6 mx-auto w-25">
+    <h1>Crear Carrera</h1>
+    <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+
+      <div class="form-group">
+        <label for="crearCuentaForm">Nombre de la carrera:</label>
+        <input type="text" id="Nombre" name="Nombre" [(ngModel)]="formData.race_name" class="form-control"><br>
+      </div>
+
+      <div class="form-group">
+        <label for="crearCuentaForm">Fecha de la carrera:</label>
+        <input type="date" id="Fecha" name="Fecha" [(ngModel)]="formData.race_date" class="form-control" value="2018-07-22" min="1900-01-01" max="2100-12-31"><br>
+      </div>
+
+      <div class="form-group">
+        <label for="crearCuentaForm">Recorrido</label>
+        <input type="text" id="Recorrido" name="Recorrido" [(ngModel)]="formData.route" class="form-control"><br>
+      </div>
+
+      <div class="form-group">
+        <label >Actividad</label>
+        <div>
+          <select id="actividad" name="Actividad" [(ngModel)]="formData.activity">
+            <option value="Correr">Correr</option>
+            <option value="Nadar">Nadar</option>
+            <option value="Ciclismo">Ciclismo</option>
+            <option value="Kayak">Kayak</option>
+            <option value="Caminata">Caminata</option>
+          </select> 
+        </div>
+      </div>
+      <br>
+      <br>
+
+      <div class="form-group">
+        <label for="crearCuentaForm">Costo</label>
+        <input type="text" id="Costo" name="Costo" [(ngModel)]="formData.cost" class="form-control"><br>
+      </div>
+
+
+      <div class="form-group">
+        <label for="crearCuentaForm">Cuenta Bancaria</label>
+        <input type="text" id="Cuenta_bancaria" name="Cuenta_bancaria" [(ngModel)]="formData.bank_account" class="form-control"><br>
+      </div>
+
+      <div class="form-group">
+        <label >Categoría</label>
+        <div>
+          <select id="Categoria" name="Actividad" [(ngModel)]="formData.category">
+            <option value="Junior">Junior</option>
+            <option value="Sub-23">Sub-23</option>
+            <option value="Elite">Elite</option>
+            <option value="Master A">Master A</option>
+            <option value="Master B">Master B</option>
+            <option value="Master C">Master C</option>
+          </select> 
+        </div>
+      </div>
+      <br>
+      <br>
+
+      <div class="form-group">
+        <label> Patrocinadores</label>
+        <div>
+          <select id="Patrocinadores" name="Patrocinadores" [(ngModel)]="formData.sponsors">
+            <option value="Patrocinador 1">Patrocinador 1</option>
+            <option value="Patrocinador 2">Patrocinador 2</option>
+            <option value="Patrocinador 3">Patrocinador 3</option>
+            <option value="Patrocinador 4">Patrocinador 4</option>
+
+          </select> 
+        </div>
+      </div>
+      <br>
+      <br>
+
+      <button class="btn btn-light btn-lg btn-block page-button" type="submit">Submit</button>
+    </form>
+    <br>
+    <br>
+    <br>
+
+  </div>
+
+
+  <div class="w-100">
+    aqui se muestran las actividades creadas
+  </div>
+</div>
+<!--
+<br>
+<br>
+<br>
+<div class = "container">
+    <table class = "table  table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
+                <th>DIRECCION</th>
+                <th>TELEFONO</th>
+                <th>SINPE</th>
+                <th>LUGAR</th>
+                <th>USUARIO</th>
+                <th>PASSWORD</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let farmer of farmers">
+                <td><span>{{farmer.id}}</span></td>
+                <td><span>{{farmer.name}}</span></td>
+                <td><span>{{farmer.lastName}}</span></td>
+                <td><span>{{farmer.address}}</span></td>
+                <td><span>{{farmer.phone}}</span></td>
+                <td><span>{{farmer.sinpe}}</span></td>
+                <td><span>{{farmer.places}}</span></td>
+                <td><span>{{farmer.userName}}</span></td>
+                <td><span>{{farmer.password}}</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->

@@ -24,6 +24,9 @@ import { GooglePlaceModule} from "ngx-google-places-autocomplete";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+import { GestionCarreraComponent } from './gestion-carrera/gestion-carrera.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EntradaDeportistaComponent,
     VistaOrganizadorComponent,
     PaginaDeInicioComponent,
+    GestionCarreraComponent,
   ],
   imports: [
     BrowserModule,

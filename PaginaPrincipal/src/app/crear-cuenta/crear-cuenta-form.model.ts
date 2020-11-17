@@ -5,4 +5,4 @@ export class CrearCuentaModel {
     photo: string;
     username: string;
     password: string;
-}
+} 

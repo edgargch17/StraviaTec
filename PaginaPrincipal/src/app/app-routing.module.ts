@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
 import { VistaOrganizadorComponent } from './vista-organizador/vista-organizador.component';
 import { PaginaDeInicioComponent } from './pagina-de-inicio/pagina-de-inicio.component';
+import { GestionCarreraComponent } from './gestion-carrera/gestion-carrera.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'crear-cuenta', component: CrearCuentaComponent},
   { path: 'pagina-de-inicio', component: PaginaDeInicioComponent},
   { path: 'vista-organizador', component: VistaOrganizadorComponent},
+  { path: 'gestion-carrera', component: GestionCarreraComponent},
   /*{ path: 'publico', component: VistaPublicoComponent,
     children: [
       { path: 'form', component: LoginFormComponent, },     
