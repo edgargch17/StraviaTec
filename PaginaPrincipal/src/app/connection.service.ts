@@ -17,7 +17,7 @@ export class ConnectionService {
 
   //postea hacia el server
   PostForm(val:any,rootURL){
-  this.http.post(rootURL,val).subscribe(
+  this.http.post<boolean>(rootURL,val).subscribe(
    response => {
        alert(response);
        console.log(response);

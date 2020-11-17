@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CrearCuentaModel } from './crear-cuenta-form.model';
 import { ConnectionService } from 'src/app/connection.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,10 +23,12 @@ export class CrearCuentaComponent implements OnInit {
     password: null,
   };
 
-  //declara "this" de las clases HttpClient y el service de conexión
+  //declara "this" de las clases HttpClient y el service de conexión, y el router 
+  //para redirigir luego de llenar el form
   constructor(
     private http: HttpClient,
-    private service : ConnectionService) { } 
+    private service : ConnectionService,
+    private router: Router) { } 
   
   //url hacia donde se realizará el post
   readonly rootURL = 'http://localhost:55003/api/main/post';
@@ -38,5 +41,7 @@ export class CrearCuentaComponent implements OnInit {
   onSubmit(form: NgForm) {
       this.service.PostForm(this.formData,this.rootURL).subscribe(res=>{
       });
+      alert("sus datos han sido procesados con éxito");
+      this.router.navigate(['']);
   }
 }
