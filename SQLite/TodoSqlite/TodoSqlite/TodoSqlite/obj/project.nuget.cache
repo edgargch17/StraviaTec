@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "OshoxFRjBo1V0u0H26xSYFUfD/cjZ+4Pv7xlcorHT/oK6S/3w30WMHsrxPs6YvkIjO+r4UfJfUF/D8p40+N60Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\1001001164\\Documents\\UNIVERSIDAD\\Xamarin.Forms-Samples-master\\TodoSqlite\\TodoSqlite\\TodoSqlite\\TodoSqlite.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\1001001164\\.nuget\\packages\\autofac\\4.6.2\\autofac.4.6.2.nupkg.sha512",
+    "C:\\Users\\1001001164\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\1001001164\\.nuget\\packages\\microsoft.netcore.targets\\1.0.1\\microsoft.netcore.targets.1.0.1.nupkg.sha512",
+    "C:\\Users\\1001001164\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\1001001164\\.nuget\\packages\\sqlite-net-pcl\\1.5.166-beta\\sqlite-net-pcl.1.5.166-beta.nupkg.sha512",
+    "C:\\Users\\1001001164\\.nuget\\packages\\sqlitepclraw.bundle_green\\1.1.8\\sqlitepclraw.bundle_green.1.1.8.nupkg.sha512",
+    "C:\\Users\\1001001164\\.nuget\\packages\\sqlitepclraw.core\\1.1.8\\sqlitepclraw.core.1.1.8.nupkg.sha512",
+    "C:\\Users\\1001001164\\.nuget\\packages\\system.componentmodel\\4.0.1\\system.componentmodel.4.0.1.nupkg.sha512",
+    "C:\\Users\\1001001164\\.nuget\\packages\\system.runtime\\4.1.0\\system.runtime.4.1.0.nupkg.sha512",
+    "C:\\Users\\1001001164\\.nuget\\packages\\xamarin.forms\\2.5.0.121934\\xamarin.forms.2.5.0.121934.nupkg.sha512"
+  ],
+  "logs": []
+}
