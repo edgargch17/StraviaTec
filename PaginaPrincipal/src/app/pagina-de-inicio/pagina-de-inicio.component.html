@@ -1,27 +1,48 @@
-<h2>GPS En Tiempo Real Ciclista</h2>
 
-<!--
-    <agm-map [latitude]="lat" [longitude]="long" [zoom]="zoom" [mapTypeId]="mapTypeId"></agm-map>
--->
+<!--página de inicio del usuario luego del login-->
 
-<h2>GPS En Tiempo Real gololllllllll</h2>
+<div class="d-flex flex-row bd-highlight justify-content-around" >
+    
+    <div>
+        <br>
+        <br>
+        <div >
+            <a class="btn btn-light btn-lg btn-block page-button" [routerLink]="['/crear-cuenta']" role="button">Registrar actividad</a> 
+        </div> 
+        <br>
+        <br>
+        <div >
+            <a class="btn btn-light btn-lg btn-block page-button" [routerLink]="['/crear-cuenta']" role="button">Inscribirse en una carrera</a> 
+        </div> 
+        <br>
+        <br>
+        <div >
+            <a class="btn btn-light btn-lg btn-block page-button" [routerLink]="['/crear-cuenta']" role="button">Inscribirse en un reto</a> 
+        </div> 
+        <br>
+        <br>
+        <div >
+            <a class="btn btn-light btn-lg btn-block page-button" [routerLink]="['/crear-cuenta']" role="button">Asociarse a un grupo</a> 
+        </div> 
+        <br>
+        <br>
+        <div >
+            <a class="btn btn-light btn-lg btn-block page-button" [routerLink]="['/crear-cuenta']" role="button">Ver retos y carreras inscritos</a> 
+        </div> 
+    </div>
+
+    <div>
+        <br>
+        <br>
+        <!--carga el mapa del recorrido de los amigos -->
+        <div id="map" style="height:50%;width:50%px;"></div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+            <p class="card-text">Pedro Perico Los Palotes</p>
+            </div>
+        </div>
+    </div>
 
 
-<!--...................................Mapa...................................-->
-<div id="map"></div>
+</div>
 
-<!--......................Boton para encontrar ubicacion en tiempo real....................-->
-<button (click)="getPosition()">Posicion en Tiempo Real</button>
-
-<!--......................input en donde se ingresa la direccion......................-->
-<input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
-
-<!--......................Boton para encontrar la ruta optima....................-->
-<button (click)="getRoute()" >Obtener Ruta</button>
-
-<!--......................Boton para reiniciar el mapa...........................-->
-<button type="reset">Reiniciar Mapa</button>
-
-<!--......................Indicaciones........................................-->
-<h3>Indicaciones</h3>
-<div id="indicators"></div>

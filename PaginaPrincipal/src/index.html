@@ -1,3 +1,19 @@
+<!--
+NOTA INICIAL SOBRE LA DOCUMENTACION INTERNA
+En algunos componentes, se utilizaron procedimientos con comportamientos similiares 
+(por ejemplo forms html o llamados a funciones y componentes de manera similar)
+y se siguieron buenas prácticas de programación tales como utilizar services para 
+reutilizar código, por lo tanto, algunos procedimientos no se documentaran extensamente
+para evitar documentación interna redundante (varias secciones del programa trabajando
+de manera similar).
+Por esto, se encuentra documentado el componente "crear cuenta", y en base a esta documenta-
+ción se puede ineferir el funcionamiento de los procedimientos similares en otros componentes
+
+En general, los archivos .spec.ts son generados automaticamente por angular y no se modifican
+
+Se utilizó la bibilioteca Bootstrap para el manejo de CSS, por lo que no hay mucho CSS en los 
+distintos componentes
+-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,17 +22,16 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <!-- Maps-->
+  <!--Scripts necesarios para los  mapas-->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYp93ij7X3_elgT0FFT0RTZKHRb_gpRsw"></script>
-
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYp93ij7X3_elgT0FFT0RTZKHRb_gpRsw&libraries=places&language=en"></script>
-
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   
 </head>
 <body class="mat-typography">
+  <!--invoca el cuerpo del programa-->
   <app-root></app-root>
 </body>
 </html>

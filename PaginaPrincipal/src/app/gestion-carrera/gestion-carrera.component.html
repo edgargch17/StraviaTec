@@ -1,3 +1,5 @@
+<!--permite crear, eliminar y modificar carreras-->
+
 <div class="d-flex flex-row bd-highlight justify-content-around" >
   <div class="col-6 mx-auto w-25">
     <h1>Crear Carrera</h1>
@@ -18,6 +20,7 @@
         <input type="text" id="Recorrido" name="Recorrido" [(ngModel)]="formData.route" class="form-control"><br>
       </div>
 
+      <!--los selects permiten seleccionar entre algunos valores predefinidos-->
       <div class="form-group">
         <label >Actividad</label>
         <div>
@@ -83,7 +86,7 @@
 
   </div>
 
-
+  <!--se muestran las actividades ya existentes en la base de datos-->
   <div class="w-100">
     aqui se muestran las actividades creadas
   </div>

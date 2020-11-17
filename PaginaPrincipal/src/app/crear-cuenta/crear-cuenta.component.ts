@@ -12,6 +12,7 @@ import { ConnectionService } from 'src/app/connection.service';
 
 })
 export class CrearCuentaComponent implements OnInit {
+  //este JSON es modificado desde el HTML para ser enviado al server
   formData: CrearCuentaModel= {
     name :null,
     birth_date: null,
@@ -21,17 +22,19 @@ export class CrearCuentaComponent implements OnInit {
     password: null,
   };
 
-
+  //declara "this" de las clases HttpClient y el service de conexión
   constructor(
     private http: HttpClient,
     private service : ConnectionService) { } 
-    
+  
+  //url hacia donde se realizará el post
   readonly rootURL = 'http://localhost:55003/api/main/post';
 
 
   ngOnInit(): void {
   }
 
+  //se obtiene el post y se envía al service para ser enviado al backend
   onSubmit(form: NgForm) {
       this.service.PostForm(this.formData,this.rootURL).subscribe(res=>{
       });

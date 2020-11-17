@@ -1,8 +1,11 @@
 
 <div class="col-6 mx-auto">
     <h1>Registro de deportistas</h1>
+    <!--form de registro de deportistatas-->
   <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
 
+    <!--input para obtener datos. Existen diferentes tipos, aquí se utilizaron texto, números,
+    fechas y selects-->
     <div class="form-group">
       <label for="crearCuentaForm">Nombre:</label>
       <input type="text" id="Nombre" name="Nombre" [(ngModel)]="formData.name" class="form-control"><br>
@@ -27,12 +30,13 @@
       <label for="crearCuentaForm">Usuario :</label>
       <input type="text" id="Usuario" name="Usuario" [(ngModel)]="formData.username" class="form-control"><br>
     </div>
-
+ 
     <div class="form-group">
       <label for="crearCuentaForm">Contraseña:</label>
       <input type="password" id="Contraseña" name="Contraseña" [(ngModel)]="formData.password" class="form-control"><br>
     </div>
 
+    <!--botón que envia los datos del form al método on_submit en el Typescript del componente-->
     <button class="btn btn-light btn-lg btn-block page-button" type="submit">Submit</button>
   </form>
   <br>

@@ -1,4 +1,4 @@
-<!--empieza navbar-->
+<!--empieza navbar, contiene un logo que redirije a "home" y la funcion de buscar atletas-->
 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:white;">
     <a class="navbar-brand" [routerLink]="['']">
       <img  alt="enFeriaTec" src="assets\logo.png" width="270" height="50">
@@ -7,6 +7,12 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!--boton de busqueda de atletas-->
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
   
     <!--
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
