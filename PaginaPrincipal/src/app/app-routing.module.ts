@@ -5,12 +5,15 @@ import { EntradaDeportistaComponent } from './entrada-deportista/entrada-deporti
 import { LoginComponent } from './login/login.component';
 import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
 import { VistaOrganizadorComponent } from './vista-organizador/vista-organizador.component';
+import { PaginaDeInicioComponent } from './pagina-de-inicio/pagina-de-inicio.component';
+
 
 const routes: Routes = [
   { path: '', component: MainPageComponent},
   { path: 'entrada-deportista', component: EntradaDeportistaComponent},
   { path: 'login', component: LoginComponent},
   { path: 'crear-cuenta', component: CrearCuentaComponent},
+  { path: 'pagina-de-inicio', component: PaginaDeInicioComponent},
   { path: 'vista-organizador', component: VistaOrganizadorComponent},
   /*{ path: 'publico', component: VistaPublicoComponent,
     children: [

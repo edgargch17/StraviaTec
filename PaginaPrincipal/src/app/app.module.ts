@@ -11,11 +11,17 @@ import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
 import { LoginComponent } from './login/login.component';
 import { EntradaDeportistaComponent } from './entrada-deportista/entrada-deportista.component';
 import { VistaOrganizadorComponent } from './vista-organizador/vista-organizador.component';
-import { CrearCuentaFormService } from './crear-cuenta-form.service';
+import { ConnectionService } from './connection.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { PaginaDeInicioComponent } from './pagina-de-inicio/pagina-de-inicio.component';
 
-
+//gps
+import { AgmCoreModule } from '@agm/core';
+import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { GooglePlaceModule} from "ngx-google-places-autocomplete";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -27,14 +33,26 @@ import { HttpClient } from '@angular/common/http';
     LoginComponent,
     EntradaDeportistaComponent,
     VistaOrganizadorComponent,
+    PaginaDeInicioComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+
+    //imports de maps
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDYp93ij7X3_elgT0FFT0RTZKHRb_gpRsw'
+    }),
+    MatCardModule,
+    FlexLayoutModule,
+    GooglePlaceModule,
+
+    FormsModule,
+
+    BrowserAnimationsModule
   ],
-  providers: [CrearCuentaFormService],
+  providers: [ConnectionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

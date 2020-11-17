@@ -1,0 +1,27 @@
+<h2>GPS En Tiempo Real Ciclista</h2>
+
+<!--
+    <agm-map [latitude]="lat" [longitude]="long" [zoom]="zoom" [mapTypeId]="mapTypeId"></agm-map>
+-->
+
+<h2>GPS En Tiempo Real gololllllllll</h2>
+
+
+<!--...................................Mapa...................................-->
+<div id="map"></div>
+
+<!--......................Boton para encontrar ubicacion en tiempo real....................-->
+<button (click)="getPosition()">Posicion en Tiempo Real</button>
+
+<!--......................input en donde se ingresa la direccion......................-->
+<input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+
+<!--......................Boton para encontrar la ruta optima....................-->
+<button (click)="getRoute()" >Obtener Ruta</button>
+
+<!--......................Boton para reiniciar el mapa...........................-->
+<button type="reset">Reiniciar Mapa</button>
+
+<!--......................Indicaciones........................................-->
+<h3>Indicaciones</h3>
+<div id="indicators"></div>

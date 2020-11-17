@@ -1,0 +1,15 @@
+#map {
+    width: 100%;
+    height: 50%;
+    opacity: 1;
+    transition: opacity 150ms ease-in;
+    display: block;
+}
+
+#indicators {
+    padding: 16px;
+    height: 20%;
+    width: 50%;
+    overflow-y: auto;
+    display: block;
+  }

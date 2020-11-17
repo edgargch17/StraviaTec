@@ -1,8 +1,8 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { FormModel } from './crear-cuenta-form.model';
-import { CrearCuentaFormService } from 'src/app/crear-cuenta-form.service';
+import { CrearCuentaModel } from './crear-cuenta-form.model';
+import { ConnectionService } from 'src/app/connection.service';
 
 
 @Component({
@@ -12,15 +12,21 @@ import { CrearCuentaFormService } from 'src/app/crear-cuenta-form.service';
 
 })
 export class CrearCuentaComponent implements OnInit {
-  formData: FormModel= {
-    name:null
+  formData: CrearCuentaModel= {
+    name :null,
+    birth_date: null,
+    nationality: null,
+    photo: null,
+    username: null,
+    password: null,
   };
+
   readonly rootURL = 'http://localhost:59035/api/main/post';
 
 
   constructor(
     private http: HttpClient,
-    private service : CrearCuentaFormService) { }  
+    private service : ConnectionService) { }  
 
 
   ngOnInit(): void {
@@ -53,25 +59,9 @@ export class CrearCuentaComponent implements OnInit {
                      "age": 21,
                      "password": "abcd1234"
                    };
-      this.service.addDepartment(val).subscribe(res=>{
-      alert(res.toString());
+      this.service.PostForm(this.formData).subscribe(res=>{
       });
   }
-
-  PostForm(val) {
-    alert("safadhfsfjdf");
-    this.http.post('http://localhost:55003/api/main/post', val ).subscribe(
-     response => {
-         console.log(response);
-         alert(response);
-         alert("fdsf");
-         //this.clients = response;
-     }
-     );
-    
-    return this.http.post('http://localhost:55003/api/main/post', val ); //this.http.get('http://localhost:55003/api/main/post');
- }
-
 
 }
 
@@ -91,7 +81,7 @@ export class CrearCuentaComponent implements OnInit {
     $.ajax({
         method: "POST",
         url: "Index.aspx/Login",
-        data: JSON.stringify(data),
+        data: JSON.nullify(data),
         contentType: "application/json; charset=utf-8",
         dataType: "json"
     }).done(function (info) {
@@ -103,12 +93,12 @@ export class CrearCuentaComponent implements OnInit {
   }*/
  /*
  increase(){
-    var dataString='sdfdds';
+    var datanull='sdfdds';
     $.ajax({
     type:"post",
     url: "increase_likes.php",
     dataType: "json",
-    data:dataString,
+    data:datanull,
     cache:false,
     success:function(data) {
 
