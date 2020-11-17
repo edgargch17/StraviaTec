@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'entrada-deportista', component: EntradaDeportistaComponent},
   { path: 'login', component: LoginComponent},
   { path: 'crear-cuenta', component: CrearCuentaComponent},
-  { path: 'pagina-de-inicio', component: PaginaDeInicioComponent},
+  { path: 'pagina-de-inicio/:id', component: PaginaDeInicioComponent },
   { path: 'vista-organizador', component: VistaOrganizadorComponent},
   { path: 'gestion-carrera', component: GestionCarreraComponent},
   { path: 'gestion-retos', component: GestionRetosComponent},

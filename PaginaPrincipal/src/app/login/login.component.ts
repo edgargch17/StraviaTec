@@ -3,7 +3,7 @@ import { ConnectionService } from 'src/app/connection.service';
 import { HttpClient } from '@angular/common/http';
 import { LoginFormModel } from './login-form.model';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private service : ConnectionService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   readonly rootURL = 'http://localhost:55003/api/main/post';
 
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
   onSubmit(form: NgForm) {
     /*this.service.PostForm(this.formData,this.rootURL).subscribe(res=>{
     });*/
-    this.router.navigate(['pagina-de-inicio/pene']);
+    this.router.navigate(['pagina-de-inicio', this.formData.username.toString()]);
   }
 
 }
