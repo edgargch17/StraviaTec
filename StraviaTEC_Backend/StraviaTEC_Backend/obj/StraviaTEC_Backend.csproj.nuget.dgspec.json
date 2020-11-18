@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pc\\Desktop\\straviaTEC\\StraviaTec\\StraviaTEC_Backend\\StraviaTEC_Backend\\StraviaTEC_Backend.csproj": {}
+    "C:\\Users\\ronny\\source\\repos\\StraviaTEC_Backend\\StraviaTEC_Backend\\StraviaTEC_Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pc\\Desktop\\straviaTEC\\StraviaTec\\StraviaTEC_Backend\\StraviaTEC_Backend\\StraviaTEC_Backend.csproj": {
+    "C:\\Users\\ronny\\source\\repos\\StraviaTEC_Backend\\StraviaTEC_Backend\\StraviaTEC_Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pc\\Desktop\\straviaTEC\\StraviaTec\\StraviaTEC_Backend\\StraviaTEC_Backend\\StraviaTEC_Backend.csproj",
+        "projectUniqueName": "C:\\Users\\ronny\\source\\repos\\StraviaTEC_Backend\\StraviaTEC_Backend\\StraviaTEC_Backend.csproj",
         "projectName": "StraviaTEC_Backend",
-        "projectPath": "C:\\Users\\Pc\\Desktop\\straviaTEC\\StraviaTec\\StraviaTEC_Backend\\StraviaTEC_Backend\\StraviaTEC_Backend.csproj",
-        "packagesPath": "C:\\Users\\Pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pc\\Desktop\\straviaTEC\\StraviaTec\\StraviaTEC_Backend\\StraviaTEC_Backend\\obj\\",
+        "projectPath": "C:\\Users\\ronny\\source\\repos\\StraviaTEC_Backend\\StraviaTEC_Backend\\StraviaTEC_Backend.csproj",
+        "packagesPath": "C:\\Users\\ronny\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ronny\\source\\repos\\StraviaTEC_Backend\\StraviaTEC_Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ronny\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +26,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -38,11 +37,14 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Npgsql": {
               "target": "Package",
               "version": "[4.1.5, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[3.1.4, )"
             }
           },
           "imports": [
@@ -63,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

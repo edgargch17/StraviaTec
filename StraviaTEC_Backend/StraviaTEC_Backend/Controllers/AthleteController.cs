@@ -5,95 +5,146 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StraviaTEC_Backend.Models;
+using StraviaTEC_Backend.Controllers;
 using Microsoft.AspNetCore.Http;
+using StraviaTEC_Backend.DataBaseAccess;
+using System.Reflection;
 //using Npgsql;
-//using System.Web.Http.Cors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StraviaTEC.Controllers
 {
-    //[EnableCors(origins: "http://localhost:4200", headers: "*", methods:"*")]
-    //[DisableCors]
     //[Produces ("application/json")]
-    [Route("api/main")]
     //[ApiController]
+    [Route("api/athlete")]
     public class AthleteController : ControllerBase
     {
-        //String postgresStr = "Server = localhost; User Id = postgres; Password = 2659; Database = postgres";
-        //NpgsqlConnection conn = new NpgsqlConnection("Server = localhost; User Id = postgres; Password = 2659; Database = StraviaTEC");
-        
-        
-        
-        ///<input>Data that must change in DB</input>
-        ///<summary>This function open comunication between DB and rest service and let's edit DB information</summary>
-        /*public void Connection()
-        {
-            conn.Open();
-            
-            //Here must edit postgres db 
-            conn.Close();
-
-
-        }
-
-        public DataTable Consult()
-        {
-            string query = "SELECT * FROM \"Deportista\"";
-            NpgsqlCommand connector = new NpgsqlCommand(query, conn);
-            NpgsqlDataAdapter data = new NpgsqlDataAdapter(connector);
-            DataTable table = new DataTable();
-            data.Fill(table);
-            Console.WriteLine(table);
-            return table;
-        }*/
+        //private readonly DataBaseHandler dataBaseHandler;
+        DataBaseHandler dataBaseHandler = new DataBaseHandler();
 
         // GET: api/<DeportistaController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Athlete> getAthletes()
         {
-            return new string[] { "value1", "value2" };
+            return dataBaseHandler.readAthleteFromDataBase(DataBaseConstants.athlete, "*");
         }
 
         // GET api/<DeportistaController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{username}")]
+        public Athlete getAthlete(string username)
         {
-            return "value";
+            return dataBaseHandler.getAthlete(username);
         }
 
         // POST api/<DeportistaController>
+        //[Route ("post")]
         [HttpPost]
-        [Route ("post")]
-        //public void postDeportista([FromBody] Deportista value)
-        //public IActionResult postDeportista([FromBody] Deportista value)
-        public IActionResult postDeportista([FromBody] Athlete value)
+        public IActionResult postAthlete([FromBody] Athlete athlete)
         {
             if (ModelState.IsValid)
             {
-                var model = value;
+                if (athlete.username == null)
+                {
+                    return BadRequest();
+                }
+                if (athlete.birth_date != DateTime.MinValue)
+                {
+                    athlete.setAge();
+                }
+                if (athlete.password == null)
+                {
+                    return BadRequest();
+                }
+                if (athlete.name == null)
+                {
+                    return BadRequest();
+                }
+                dataBaseHandler.insertDataBase(DataBaseConstants.athlete, 
+                    "username, password, name, last_name, nationality, birth_date, photo, age", 
+                    athlete.username + "','" + 
+                    athlete.password + "','" +
+                    athlete.name + "','" +
+                    athlete.nationality + "','" +
+                    athlete.birth_date + "','" +
+                    athlete.photo + "','" +
+                    athlete.getAge());
                 return Ok();
             }
             else
             {
                 return BadRequest();
             }
-            //Console.WriteLine(model.username);
-            //return Ok();
-
-            //return JsonResult(new { success = true, result = "My name is" });
         }
 
         // PUT api/<DeportistaController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{username}")]
+        public IActionResult putAthlete(string username, [FromBody] Athlete athlete)
         {
+            try
+            {
+                string attribsToModify = "username = '" + athlete.username;
+                if (username.Equals(athlete.username))
+                {
+                    if (athlete.password != null)
+                    {
+                        if (!((athlete.password).Equals("")))
+                        {
+                            attribsToModify = attribsToModify + "', password = '" + athlete.password;
+                        }
+                    }
+                    if (athlete.name != null)
+                    {
+                        if (!((athlete.name).Equals("")))
+                        {
+                            attribsToModify = attribsToModify + "', name = '" + athlete.name;
+                        }
+                    }
+                    if (athlete.nationality != null)
+                    {
+                        if (!((athlete.nationality).Equals("")))
+                        {
+                            attribsToModify = attribsToModify + "', nationality = '" + athlete.nationality;
+                        }
+                    }
+                    if (athlete.photo != null)
+                    {
+                        if (!((athlete.photo).Equals("")))
+                        {
+                            attribsToModify = attribsToModify + "', photo = '" + athlete.photo;
+                        }
+                    }
+                    if (athlete.birth_date != DateTime.MinValue)
+                    {
+                        athlete.setAge();
+                        attribsToModify = attribsToModify + "', birth_date = '" + athlete.birth_date + "', age = " + athlete.getAge(); ;
+                    }
+
+                    dataBaseHandler.updateDataBase(DataBaseConstants.athlete, attribsToModify, "username = '" + athlete.username + "'");
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }catch (Exception e)
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE api/<DeportistaController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{username}")]
+        public IActionResult deleteAthlete(string username)
         {
+            if(dataBaseHandler.deleteFromDataBase(DataBaseConstants.athlete, "username = '" + username + "'"))
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }
