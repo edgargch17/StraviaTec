@@ -27,14 +27,14 @@ namespace StraviaTEC.Controllers
         [HttpGet]
         public IEnumerable<Athlete> getAthletes()
         {
-            return dataBaseHandler.readFromDataBase(DataBaseConstants.athlete, "*");
+            return dataBaseHandler.readAthleteFromDataBase(DataBaseConstants.athlete, "*");
         }
 
         // GET api/<DeportistaController>/5
-        [HttpGet("{id}")]
-        public string getAthlete(int id)
+        [HttpGet("{username}")]
+        public Athlete getAthlete(string username)
         {
-            return "value";
+            return dataBaseHandler.getAthlete(username);
         }
 
         // POST api/<DeportistaController>
@@ -60,16 +60,11 @@ namespace StraviaTEC.Controllers
                 {
                     return BadRequest();
                 }
-                if (athlete.last_name == null)
-                {
-                    return BadRequest();
-                }
                 dataBaseHandler.insertDataBase(DataBaseConstants.athlete, 
                     "username, password, name, last_name, nationality, birth_date, photo, age", 
                     athlete.username + "','" + 
                     athlete.password + "','" +
                     athlete.name + "','" +
-                    athlete.last_name + "','" +
                     athlete.nationality + "','" +
                     athlete.birth_date + "','" +
                     athlete.photo + "','" +
@@ -103,13 +98,6 @@ namespace StraviaTEC.Controllers
                         if (!((athlete.name).Equals("")))
                         {
                             attribsToModify = attribsToModify + "', name = '" + athlete.name;
-                        }
-                    }
-                    if (athlete.last_name != null)
-                    {
-                        if (!((athlete.last_name).Equals("")))
-                        {
-                            attribsToModify = attribsToModify + "', last_name = '" + athlete.last_name;
                         }
                     }
                     if (athlete.nationality != null)

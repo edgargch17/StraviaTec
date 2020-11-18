@@ -15,11 +15,11 @@ namespace StraviaTEC_Backend.DataBaseAccess
     {
         
         /**************** READ TABLE ***************************/
-        /** <summary>GET DATA FROM DATABASE </summary>**/
+        /** <summary> GET DATA FROM DATABASE </summary>**/
         /**<param name="tableRequest"> TABLE TO FETCH DATA </param>**/
         /**<param name="attributes"> ATTRIBUTES TO BE DISPLAYED </param>**/
         /**<returns> ROWS ATTRIBUTES </returns>**/
-        public List<Athlete> readFromDataBase(string tableRequest, string attributes)
+        public List<Athlete> readAthleteFromDataBase(string tableRequest, string attributes)
         {
             List <Athlete> athletes = new List<Athlete>();
             NpgsqlConnection connection = new NpgsqlConnection(DataBaseConstants.dataBaseConnection);
@@ -37,7 +37,6 @@ namespace StraviaTEC_Backend.DataBaseAccess
                            username = (string)reader["username"],
                            password = (string)reader["password"],
                            name = (string)reader["name"],
-                           last_name = (string)reader["last_name"],
                            nationality = (string)reader["nationality"],
                            birth_date = (DateTime)reader["birth_date"],
                            photo = (string)reader["photo"],
@@ -45,12 +44,40 @@ namespace StraviaTEC_Backend.DataBaseAccess
                        });
                 }
             }
-            catch //(Exception e)
+            catch
             {
 
             }
             connection.Close();
             return athletes;
+        }
+
+        public Athlete getAthlete(string username)
+        {
+            Athlete athlete = new Athlete();
+            NpgsqlConnection connection = new NpgsqlConnection(DataBaseConstants.dataBaseConnection);
+            connection.Open();
+            string query = "SELECT * FROM athlete WHERE username = '" + username + "'";
+            NpgsqlCommand connector = new NpgsqlCommand(query, connection);
+            NpgsqlDataReader reader = connector.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                { 
+                    athlete.username = (string)reader["username"];
+                    athlete.password = (string)reader["password"];
+                    athlete.name = (string)reader["name"];
+                    athlete.nationality = (string)reader["nationality"];
+                    athlete.birth_date = (DateTime)reader["birth_date"];
+                    athlete.photo = (string)reader["photo"];
+                    athlete.age = (int)reader["age"];
+                }
+            }
+            catch
+            {
+
+            }
+            return athlete;
         }
 
         /**************** INSERT ***************************/
@@ -71,7 +98,7 @@ namespace StraviaTEC_Backend.DataBaseAccess
                 connection.Close();
                 return true;
             }
-            catch //(Exception e)
+            catch
             {
                 return false;
             }
@@ -96,7 +123,7 @@ namespace StraviaTEC_Backend.DataBaseAccess
                 connection.Close();
                 return true;
             }
-            catch //(Exception e)
+            catch
             {
                 return false;
             }
@@ -119,7 +146,7 @@ namespace StraviaTEC_Backend.DataBaseAccess
                 connection.Close();
                 return true;
             }
-            catch //(Exception e)
+            catch
             {
                 return false;
             }
