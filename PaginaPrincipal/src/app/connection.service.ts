@@ -17,13 +17,7 @@ export class ConnectionService {
 
   //postea hacia el server
   PostForm(val:any,rootURL){
-  this.http.post<boolean>(rootURL,val).subscribe(
-   response => {
-       alert(response);
-       console.log(response);
-       //this.clients = response;
-   }
-   );
-  return this.http.post(rootURL,val);
+
+  return this.http.post<boolean>(rootURL,val);
 }
 }

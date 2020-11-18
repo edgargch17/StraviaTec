@@ -21,15 +21,25 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute) { }
 
-  readonly rootURL = 'http://localhost:55003/api/main/post';
+  readonly rootURL = 'http://localhost:55004/api/athlete';
 
   ngOnInit(): void {
   }
 
   onSubmit(form: NgForm) {
-    /*this.service.PostForm(this.formData,this.rootURL).subscribe(res=>{
-    });*/
-    this.router.navigate(['pagina-de-inicio', this.formData.username.toString()]);
+  this.service.PostForm(this.formData,this.rootURL).subscribe(
+   response => {
+      if( response ===true){
+        this.router.navigate(['pagina-de-inicio', this.formData.username.toString()]);
+      }
+      else{
+        alert("Usuario inválido, por favor verifique los datos");
+      }
+       //this.clients = response;
+   },
+   error => {
+     alert("f");
+    }
+   );
   }
-
 }
