@@ -9,7 +9,7 @@ using StraviaTEC_Backend.Controllers;
 using Microsoft.AspNetCore.Http;
 using StraviaTEC_Backend.DataBaseAccess;
 using System.Reflection;
-//using Npgsql;
+using Npgsql;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,14 +27,56 @@ namespace StraviaTEC.Controllers
         [HttpGet]
         public IEnumerable<Athlete> getAthletes()
         {
-            return dataBaseHandler.readAthleteFromDataBase(DataBaseConstants.athlete, "*");
+            List<Athlete> athletes = new List<Athlete>();
+            NpgsqlDataReader reader = dataBaseHandler.readFromDataBase(DataBaseConstants.athlete, "*");
+            try
+            {
+                while (reader.Read())
+                {
+                    athletes.Add(
+                       new Athlete()
+                       {
+                           username = (string)reader["username"],
+                           password = (string)reader["password"],
+                           full_name = (string)reader["full_name"],
+                           nationality = (string)reader["nationality"],
+                           birth_date = (DateTime)reader["birth_date"],
+                           photo = (string)reader["photo"],
+                           age = (int)reader["age"]
+                       });
+                }
+            }
+            catch
+            {
+
+            }
+            return athletes;
         }
 
         // GET api/<DeportistaController>/5
         [HttpGet("{username}")]
         public Athlete getAthlete(string username)
         {
-            return dataBaseHandler.getAthlete(username);
+            Athlete athlete = new Athlete();
+            NpgsqlDataReader reader = dataBaseHandler.getSingleRecord(DataBaseConstants.athlete,"username", username);
+            try
+            {
+                while (reader.Read())
+                {
+                    athlete.username = (string)reader["username"];
+                    athlete.password = (string)reader["password"];
+                    athlete.full_name = (string)reader["full_name"];
+                    athlete.nationality = (string)reader["nationality"];
+                    athlete.birth_date = (DateTime)reader["birth_date"];
+                    athlete.photo = (string)reader["photo"];
+                    athlete.age = (int)reader["age"];
+                }
+            }
+            catch
+            {
+
+            }
+            return athlete;
         }
 
         // POST api/<DeportistaController>
@@ -56,18 +98,18 @@ namespace StraviaTEC.Controllers
                 {
                     return BadRequest();
                 }
-                if (athlete.name == null)
+                if (athlete.full_name == null)
                 {
                     return BadRequest();
                 }
-                dataBaseHandler.insertDataBase(DataBaseConstants.athlete, 
-                    "username, password, name, last_name, nationality, birth_date, photo, age", 
+                dataBaseHandler.insertDataBase(DataBaseConstants.athlete,
+                    "username, password, full_name, nationality, birth_date, photo, age",
                     athlete.username + "','" + 
                     athlete.password + "','" +
-                    athlete.name + "','" +
+                    athlete.full_name + "','" +
                     athlete.nationality + "','" +
                     athlete.birth_date + "','" +
-                    athlete.photo + "','" +
+                    athlete.photo + "'," +
                     athlete.getAge());
                 return Ok();
             }
@@ -93,11 +135,11 @@ namespace StraviaTEC.Controllers
                             attribsToModify = attribsToModify + "', password = '" + athlete.password;
                         }
                     }
-                    if (athlete.name != null)
+                    if (athlete.full_name != null)
                     {
-                        if (!((athlete.name).Equals("")))
+                        if (!((athlete.full_name).Equals("")))
                         {
-                            attribsToModify = attribsToModify + "', name = '" + athlete.name;
+                            attribsToModify = attribsToModify + "', full_name = '" + athlete.full_name;
                         }
                     }
                     if (athlete.nationality != null)
@@ -127,7 +169,7 @@ namespace StraviaTEC.Controllers
                 {
                     return BadRequest();
                 }
-            }catch (Exception e)
+            }catch //(Exception e)
             {
                 return BadRequest();
             }

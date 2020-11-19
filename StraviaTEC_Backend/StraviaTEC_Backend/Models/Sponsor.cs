@@ -8,9 +8,9 @@ namespace StraviaTEC_Backend.Models
 {
     public class Sponsor
     {
+        public string legal_represent { get; set; }
+        public string logo { get; set; }//Picture
+        public string phone { get; set; }
         public string tradename { get; set; }//Primary Key
-        public string logo { get; set; }//Imagen
-        public PhoneAttribute phone { get; set; }//Telefono
-        public string legal_representative { get; set; }
     }
 }
