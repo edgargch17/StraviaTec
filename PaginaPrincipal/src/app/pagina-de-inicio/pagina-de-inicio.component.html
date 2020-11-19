@@ -30,17 +30,49 @@
             <a class="btn btn-light btn-lg btn-block page-button" [routerLink]="['/crear-cuenta']" role="button">Ver retos y carreras inscritos</a> 
         </div> 
     </div>
-
+    <!--aquí empieza la mitad izquierda de la vista de la página de inicio-->
     <div>
+
         <br>
         <br>
-        <!--carga el mapa del recorrido de los amigos -->
+        <!-- aquí se cargan los datos de los amigos del usuario-->
+        <div class = "container">
+            <table class = "table  table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>APELLIDO</th>
+                        <th>DIRECCION</th>
+                        <th>TELEFONO</th>
+                        <th>SINPE</th>
+                        <th>LUGAR</th>
+                        <th>USUARIO</th>
+                        <th>PASSWORD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let farmer of farmers">
+                        <td><span>{{farmer.id}}</span></td>
+                        <td><span>{{farmer.name}}</span></td>
+                        <td><span>{{farmer.lastName}}</span></td>
+                        <td><span>{{farmer.address}}</span></td>
+                        <td><span>{{farmer.phone}}</span></td>
+                        <td><span>{{farmer.sinpe}}</span></td>
+                        <td><span>{{farmer.places}}</span></td>
+                        <td><span>{{farmer.userName}}</span></td>
+                        <td><span>{{farmer.password}}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--carga el mapa del recorrido de los amigos 
         <div id="map" style="height:50%;width:50%px;"></div>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
             <p class="card-text">Pedro Perico Los Palotes</p>
             </div>
-        </div>
+        </div>-->
     </div>
 
 
