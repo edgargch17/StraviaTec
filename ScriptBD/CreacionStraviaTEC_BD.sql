@@ -36,7 +36,7 @@ CREATE TABLE SPONSOR(
 ------CREA LA TABLA PARA ALMACENAR LOS DATOS DE LAS ACTIVIDADES------------
 ---------------------------------------------------------------------------
 CREATE TABLE ACTIVITY(
-	category VARCHAR(20) NOT NULL,
+	bottom_altitude VARCHAR(20) NOT NULL,
 	type_act VARCHAR(20),
 	duration TIME,
 	distancia INT,
@@ -99,8 +99,8 @@ CREATE TABLE CHALLENGE(
 ---------CREA LA TABLA PARA ALMACENAR LOS DATOS DE LOS GRUPOS--------------
 ---------------------------------------------------------------------------
 CREATE TABLE TEAM(
-	nombre VARCHAR(20) NOT NULL,
-	administrador VARCHAR(20) NOT NULL,
+	name VARCHAR(20) NOT NULL,
+	administrator VARCHAR(20) NOT NULL,
 	team_identifier VARCHAR(20),--PRIMARY KEY--
 	
 	PRIMARY KEY(team_identifier)
