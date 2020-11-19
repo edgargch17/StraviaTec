@@ -90,13 +90,13 @@ namespace StraviaTEC_Backend.Controllers
                 try
                 {
                     dataBaseHandler.insertDataBase(DataBaseConstants.race,
-                        "race_name, travel, race_date, money_cost, activity_type, race_identifier, activity_id",
+                        "race_name, travel, race_date, activity_type, race_identifier, activity_id, money_cost",
                         race.race_name + "','" +
                         race.travel + "','" +
                         race.race_date + "','" +
                         race.activity_type + "','" +
                         race.race_identifier + "','" +
-                        race.activity_id + "','" +
+                        race.activity_id + "'," +
                         race.money_cost);
                     return Ok();
                 }
@@ -112,40 +112,40 @@ namespace StraviaTEC_Backend.Controllers
         {
             try
             {
-                string attribsToModify = "race_identifier = '" + race.race_identifier;
+                string attribsToModify = "race_identifier = '" + race.race_identifier + "'";
                 if (race_identifier.Equals(race.race_identifier))
                 {
                     if (race.race_name != null)
                     {
                         if (!((race.race_name).Equals(""))){
-                            attribsToModify = attribsToModify + "race_name = '" + race.race_name;
+                            attribsToModify = attribsToModify + ", race_name = '" + race.race_name + "'";
                         }
                     }
                     if (race.travel != null)
                     {
                         if (!((race.travel).Equals("")))
                         {
-                            attribsToModify = attribsToModify + " travel = '" + race.travel;
+                            attribsToModify = attribsToModify + ", travel = '" + race.travel + "'";
                         }
                     }
                     if (race.race_date != DateTime.MinValue)
                     {
-                        attribsToModify = attribsToModify + " race_date = '" + race.race_date;
+                        attribsToModify = attribsToModify + ", race_date = '" + race.race_date + "'";
                     }
                     if (race.activity_type != null)
                     {
                         if (!((race.activity_type).Equals(""))){
-                            attribsToModify = attribsToModify + " activity_type = '" + race.activity_type;
+                            attribsToModify = attribsToModify + ", activity_type = '" + race.activity_type + "'";
                         }
                     }
                     if (race.activity_id != null)
                     {
                         if (!((race.activity_id).Equals("")))
                         {
-                            attribsToModify = attribsToModify + " activity_id = '" + race.activity_id;
+                            attribsToModify = attribsToModify + ", activity_id = '" + race.activity_id + "'";
                         }
                     }
-                    attribsToModify = attribsToModify + " money_cost = " + race.money_cost;
+                    attribsToModify = attribsToModify + ", money_cost = " + race.money_cost;
                     dataBaseHandler.updateDataBase(DataBaseConstants.race, attribsToModify, "race_identifier = '" + race.race_identifier + "'");
                     return Ok();
                 }

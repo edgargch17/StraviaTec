@@ -83,7 +83,7 @@ namespace StraviaTEC_Backend.Controllers
                         "name, administrator, team_identifier",
                         team.name + "','" +
                         team.administrator + "','" +
-                        team.team_identifier);
+                        team.team_identifier + "'");
                     return Ok();
                 }
                 catch { }
@@ -97,21 +97,21 @@ namespace StraviaTEC_Backend.Controllers
         {
             try
             {
-                string attribsToModify = "team_identifier = '" + team.team_identifier;
+                string attribsToModify = "team_identifier = '" + team.team_identifier + "'";
                 if (team_identifier.Equals(team.team_identifier))
                 {
                     if(team.name != null)
                     {
                         if (! ( (team.name).Equals("") ))
                         {
-                            attribsToModify = attribsToModify + ", name = '" + team.name;
+                            attribsToModify = attribsToModify + ", name = '" + team.name + "'";
                         }
                     }
                     if (team.administrator != null)
                     {
                         if (! ( (team.administrator).Equals("") ))
                         {
-                            attribsToModify = attribsToModify + ", administrator = '" + team.administrator;
+                            attribsToModify = attribsToModify + ", administrator = '" + team.administrator + "'";
                         }
                     }
                     dataBaseHandler.updateDataBase(DataBaseConstants.team, attribsToModify, "team_identifier = '" + team.team_identifier + "'");

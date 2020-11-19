@@ -115,9 +115,16 @@ namespace StraviaTEC_Backend.Controllers
         [HttpPut("{id}")]
         public IActionResult putActivity(string id, [FromBody] Activity activity)
         {
-            string attribstoModify = "activity_identifier = " + activity.activity_identifier;
+            string attribstoModify = "activity_identifier = '" + activity.activity_identifier;
             if (id.Equals(activity.activity_identifier))
             {
+                if (activity.category != null)
+                {
+                    if (!((activity.category).Equals("")))
+                    {
+                        attribstoModify = attribstoModify + "', category  = '" + activity.category;
+                    }
+                }
                 if (activity.type_act != null)
                 {
                     if (!((activity.type_act).Equals("")))
@@ -134,20 +141,20 @@ namespace StraviaTEC_Backend.Controllers
                 }
                 if (activity.date_time != DateTime.MinValue)
                 {
-                    attribstoModify = attribstoModify + ", date_time  = '" + activity.date_time;
+                    attribstoModify = attribstoModify + "', date_time  = '" + activity.date_time;
                 }
                 if (activity.map != null)
                 {
                     if (!((activity.map).Equals("")))
                     {
-                        attribstoModify = attribstoModify + ", map  = '" + activity.map;
+                        attribstoModify = attribstoModify + "', map  = '" + activity.map;
                     }
                 }
                 if (activity.challenge_race != null)
                 {
                     if (!((activity.challenge_race).Equals("")))
                     {
-                        attribstoModify = attribstoModify + ", challenge_race  = '" + activity.challenge_race;
+                        attribstoModify = attribstoModify + "', challenge_race  = '" + activity.challenge_race + "'";
                     }
                 }
                 if (activity.distancia != 0)

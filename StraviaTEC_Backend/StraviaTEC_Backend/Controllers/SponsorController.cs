@@ -101,21 +101,21 @@ namespace StraviaTEC_Backend.Controllers
                     {
                         if (! ((sponsor.legal_represent).Equals("") ))
                         {
-                            attribsToModify = attribsToModify + ", legal_represent = '" + sponsor.legal_represent;
+                            attribsToModify = attribsToModify + "', legal_represent = '" + sponsor.legal_represent;
                         }
                     }
                     if (sponsor.logo != null)
                     {
                         if (!((sponsor.logo).Equals("")))
                         {
-                            attribsToModify = attribsToModify + ", logo = '" + sponsor.logo;
+                            attribsToModify = attribsToModify + "', logo = '" + sponsor.logo;
                         }
                     }
                     if (sponsor.phone != null)
                     {
                         if (! ( (sponsor.phone).Equals("") ))
                         {
-                            attribsToModify = attribsToModify + ", phone = '" + sponsor.phone + "'";
+                            attribsToModify = attribsToModify + "', phone = '" + sponsor.phone + "'";
                         }
                     }
                 }
@@ -130,7 +130,7 @@ namespace StraviaTEC_Backend.Controllers
         [HttpDelete("{tradename}")]
         public IActionResult Delete(string tradename)
         {
-            if (dataBaseHandler.deleteFromDataBase(DataBaseConstants.sponsor, tradename))
+            if (dataBaseHandler.deleteFromDataBase(DataBaseConstants.sponsor, "tradename = '" + tradename + "'"))
             {
                 return Ok();
             }

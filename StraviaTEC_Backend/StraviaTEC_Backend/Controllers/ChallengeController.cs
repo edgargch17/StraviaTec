@@ -49,7 +49,7 @@ namespace StraviaTEC_Backend.Controllers
             Challenge challenge = new Challenge();
             try
             {
-                NpgsqlDataReader reader = dataBaseHandler.readFromDataBase(DataBaseConstants.challenge, "*");
+                NpgsqlDataReader reader = dataBaseHandler.getSingleRecord(DataBaseConstants.challenge, "challenge_identifier", challenge_identifier);
                 while (reader.Read())
                 {
 
@@ -81,12 +81,9 @@ namespace StraviaTEC_Backend.Controllers
                 {
                     return BadRequest();
                 }
-                if (challenge.start_date != null)
+                if ((challenge.start_date != DateTime.MinValue) && (challenge.start_date < challenge.end_date))
                 {
-                    if (challenge.end_date == null)
-                    {
-                        return BadRequest();
-                    }
+                    return BadRequest();
                 }
                 try
                 {
@@ -113,40 +110,40 @@ namespace StraviaTEC_Backend.Controllers
         {
             try
             {
-                string attribsToModify = "challenge_identifier = '" + challenge.challenge_identifier;
+                string attribsToModify = "challenge_identifier = '" + challenge.challenge_identifier + "'";
                 if ((challenge_identifier).Equals(challenge.challenge_identifier))
                 {
                     if (challenge.description != null)
                     {
                         if (!((challenge.description).Equals("")))
                         {
-                            attribsToModify = attribsToModify + "', description = '" + challenge.description;
+                            attribsToModify = attribsToModify + ", description = '" + challenge.description + "'";
                         }
                     }
                     if (challenge.name_challenge != null)
                     {
                         if (! ( (challenge.name_challenge).Equals("") ))
                         {
-                            attribsToModify = attribsToModify + "', name_challenge = '" + challenge.name_challenge;
+                            attribsToModify = attribsToModify + ", name_challenge = '" + challenge.name_challenge + "'";
                         }
                     }
                     if ((challenge.start_date != DateTime.MinValue) && (challenge.start_date < challenge.end_date))
                     {
-                        attribsToModify = attribsToModify + ", start_date = '" + challenge.start_date;
-                        attribsToModify = attribsToModify + ", end_date = '" + challenge.end_date;
+                        attribsToModify = attribsToModify + ", start_date = '" + challenge.start_date + "'";
+                        attribsToModify = attribsToModify + ", end_date = '" + challenge.end_date + "'";
                     }
                     if (challenge.type_challenge != null)
                     {
                         if(! ( (challenge.type_challenge).Equals("") ))
                         {
-                            attribsToModify = attribsToModify + ", type_challenge = '" + challenge.type_challenge;
+                            attribsToModify = attribsToModify + ", type_challenge = '" + challenge.type_challenge + "'";
                         }
                     }
                     if (challenge.activity_id != null)
                     {
                         if ( !( (challenge.activity_id).Equals("") ))
                         {
-                            attribsToModify = attribsToModify + ", activity_id = '" + challenge.activity_id;
+                            attribsToModify = attribsToModify + ", activity_id = '" + challenge.activity_id + "'";
                         }
                     }
                     dataBaseHandler.updateDataBase(DataBaseConstants.challenge, attribsToModify, "challenge_identifier = '" + challenge.challenge_identifier + "'");

@@ -83,7 +83,7 @@ namespace StraviaTEC_Backend.Controllers
                         "category_name, race_id, description",
                         category.category_name + "','" +
                         category.race_id + "','" +
-                        category.description);
+                        category.description + "'");
                     return Ok();
                 }
                 catch { }
@@ -97,24 +97,24 @@ namespace StraviaTEC_Backend.Controllers
         {
             try
             {
-                string attribsToModify = "category_name = '" + category.category_name;
+                string attribsToModify = "category_name = '" + category.category_name + "'";
                 if (category_name.Equals(category.category_name))
                 {
                     if (category.race_id != null)
                     {
                         if (!((category.race_id).Equals("")))
                         {
-                            attribsToModify = attribsToModify + ", race_id = '" + category.race_id;
+                            attribsToModify = attribsToModify + ", race_id = '" + category.race_id + "'";
                         }
                     }
                     if (category.description != null)
                     {
                         if (!((category.description).Equals("")))
                         {
-                            attribsToModify = attribsToModify + ", description = '" + category.description;
+                            attribsToModify = attribsToModify + ", description = '" + category.description +"'";
                         }
                     }
-                    dataBaseHandler.updateDataBase(DataBaseConstants.team, attribsToModify, "category_name = '" + category.category_name + "'");
+                    dataBaseHandler.updateDataBase(DataBaseConstants.category, attribsToModify, "category_name = '" + category.category_name + "'");
                     return Ok();
                 }
             }

@@ -85,9 +85,9 @@ namespace StraviaTEC_Backend.Controllers
                 {
                     dataBaseHandler.insertDataBase(DataBaseConstants.bank_account,
                         "number_account, owner_id, race_id",
-                        bank_Account.number_account + ",'" +
+                        bank_Account.number_account + "','" +
                         bank_Account.owner_id + "','" +
-                        bank_Account.race_id);
+                        bank_Account.race_id + "'");
                     return Ok();
                 }
                 catch { }
