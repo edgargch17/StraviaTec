@@ -70,7 +70,7 @@ CREATE TABLE RACE(
 CREATE TABLE BANK_ACCOUNT(
 	race_id VARCHAR(20) NOT NULL,
 	owner_id VARCHAR(20) NOT NULL,
-	number_account INT NOT NULL,--PRIMARY KEY--
+	number_account VARCHAR NOT NULL,--PRIMARY KEY--
 	PRIMARY KEY(number_account)
 );
 
