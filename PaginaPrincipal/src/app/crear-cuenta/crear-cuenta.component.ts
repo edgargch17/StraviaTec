@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class CrearCuentaComponent implements OnInit {
   //este JSON es modificado desde el HTML para ser enviado al server
   formData: CrearCuentaModel= {
-    name :null,
+    full_name:null,
     birth_date: null,
     nationality: null,
     photo: null,
@@ -34,8 +34,8 @@ export class CrearCuentaComponent implements OnInit {
     private router: Router) { } 
   
   //url hacia donde se realizará el post
-  readonly rootURL = 'http://localhost:55003/api/main/post';
-  readonly photoURL = 'http://localhost:55003/api/main/post/photo';
+  readonly rootURL = 'http://localhost:55004/api/athlete';
+  readonly photoURL = 'http://localhost:55004/api/ahtlete/photo';
 
 
   ngOnInit(): void {

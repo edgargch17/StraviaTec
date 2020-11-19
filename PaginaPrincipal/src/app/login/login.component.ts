@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute) { }
 
-  readonly rootURL = 'http://localhost:55004/api/athlete';
+  readonly rootURL = 'http://localhost:55004/api/login';
 
   ngOnInit(): void {
   }

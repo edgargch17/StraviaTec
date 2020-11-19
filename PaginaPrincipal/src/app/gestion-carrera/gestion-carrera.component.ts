@@ -13,9 +13,9 @@ export class GestionCarreraComponent implements OnInit {
   formData: GestionCarreraModel= {
     race_name :null,
     race_date: null,
-    activity: null,
+    activity_type: null,
     route: null,
-    cost: null,
+    money_cost: null,
     bank_account: null,
     category: null,
     sponsors: null
@@ -25,7 +25,7 @@ export class GestionCarreraComponent implements OnInit {
     private http: HttpClient,
     private service : ConnectionService) { } 
     
-  readonly rootURL = 'http://localhost:55003/api/main/post';
+  readonly rootURL = 'http://localhost:55004/api/race';
 
   ngOnInit(): void {
   }
