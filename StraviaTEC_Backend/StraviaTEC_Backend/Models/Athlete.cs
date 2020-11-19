@@ -13,7 +13,7 @@ namespace StraviaTEC_Backend.Models
         /**<summary> ATHLETE CLASS ATTRIBUTES</summary>*/
         public string username { get; set; }//Primary Key
         public string password { get; set; }
-        public string name { get; set; }
+        public string full_name { get; set; }
         public string nationality { get; set; }
         public DateTime birth_date { get; set; }
         public string photo { get; set; }

@@ -8,7 +8,7 @@ namespace StraviaTEC_Backend.DataBaseAccess
     static class DataBaseConstants
     {
         /**<summary>COMMAND TO START CONNECTION WITH DATABASE</summary>**/
-        public static string dataBaseConnection= "Server = localhost; User Id = postgres; Password = allan1409; Database = postgres";
+        public static string dataBaseConnection= "Server = localhost; User Id = postgres; Password = 2659; Database = test";
 
         /**<summary>COMMAND LIST THAT WILL MANIPULATE DATA IN DB </summary>**/
         public static string select = "SELECT";
@@ -20,11 +20,13 @@ namespace StraviaTEC_Backend.DataBaseAccess
 
         /**<summary>TABLE NAME CONSTANTS IN DB</summary>**/
         public static string athlete = "athlete";
-        public static string sponsor = "SPONSOR";
-        public static string activity = "ACTIVITY";
-        public static string race = "RACE";
-        public static string challenge = "CHALLEGE";
-        public static string team = "TEAM";
+        public static string sponsor = "sponsor";
+        public static string activity = "activity";
+        public static string race = "race";
+        public static string challenge = "challenge";
+        public static string team = "team";
+        public static string category = "category";
+        public static string bank_account = "bank_account";
 
         /**<summary>ATTRIBUTE LIST FOR EACH TABLE IN DB</summary>**/
         //TABLE ATHLETE ATTRIBUTES

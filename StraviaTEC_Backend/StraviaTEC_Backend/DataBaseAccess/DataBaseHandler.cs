@@ -19,65 +19,25 @@ namespace StraviaTEC_Backend.DataBaseAccess
         /**<param name="tableRequest"> TABLE TO FETCH DATA </param>**/
         /**<param name="attributes"> ATTRIBUTES TO BE DISPLAYED </param>**/
         /**<returns> ROWS ATTRIBUTES </returns>**/
-        public List<Athlete> readAthleteFromDataBase(string tableRequest, string attributes)
+        public NpgsqlDataReader readFromDataBase(string tableRequest, string attributes)
         {
-            List <Athlete> athletes = new List<Athlete>();
             NpgsqlConnection connection = new NpgsqlConnection(DataBaseConstants.dataBaseConnection);
             connection.Open();
             string query = "SELECT " + attributes + " FROM " + tableRequest;
             NpgsqlCommand connector = new NpgsqlCommand(query, connection);
-            NpgsqlDataReader reader = connector.ExecuteReader();
-            try
-            {
-                while (reader.Read())
-                {
-                    athletes.Add(
-                       new Athlete()
-                       {
-                           username = (string)reader["username"],
-                           password = (string)reader["password"],
-                           name = (string)reader["name"],
-                           nationality = (string)reader["nationality"],
-                           birth_date = (DateTime)reader["birth_date"],
-                           photo = (string)reader["photo"],
-                           age = (int)reader["age"]
-                       });
-                }
-            }
-            catch
-            {
-
-            }
-            connection.Close();
-            return athletes;
+            //NpgsqlDataReader reader = connector.ExecuteReader();
+            return connector.ExecuteReader();//reader;
         }
 
-        public Athlete getAthlete(string username)
+        public NpgsqlDataReader getSingleRecord(string tableRequest,string conditionAttrib, string keyAttrib)
         {
-            Athlete athlete = new Athlete();
             NpgsqlConnection connection = new NpgsqlConnection(DataBaseConstants.dataBaseConnection);
             connection.Open();
-            string query = "SELECT * FROM athlete WHERE username = '" + username + "'";
+            string query = "SELECT * FROM " + tableRequest + " WHERE " +  conditionAttrib + " = " + "'" + keyAttrib + "'";
             NpgsqlCommand connector = new NpgsqlCommand(query, connection);
-            NpgsqlDataReader reader = connector.ExecuteReader();
-            try
-            {
-                while (reader.Read())
-                { 
-                    athlete.username = (string)reader["username"];
-                    athlete.password = (string)reader["password"];
-                    athlete.name = (string)reader["name"];
-                    athlete.nationality = (string)reader["nationality"];
-                    athlete.birth_date = (DateTime)reader["birth_date"];
-                    athlete.photo = (string)reader["photo"];
-                    athlete.age = (int)reader["age"];
-                }
-            }
-            catch
-            {
-
-            }
-            return athlete;
+            //NpgsqlDataReader reader = connector.ExecuteReader();
+            return connector.ExecuteReader();
+            
         }
 
         /**************** INSERT ***************************/
@@ -91,10 +51,10 @@ namespace StraviaTEC_Backend.DataBaseAccess
             {
                 NpgsqlConnection connection = new NpgsqlConnection(DataBaseConstants.dataBaseConnection);
                 connection.Open();
-                using var commaandRequest = new NpgsqlCommand();
-                commaandRequest.Connection = connection;
-                commaandRequest.CommandText = "INSERT INTO " + tableRequest + "(" + attributes + ") VALUES('" + dataInsertion + "')";
-                commaandRequest.ExecuteNonQuery();
+                using var commandRequest = new NpgsqlCommand();
+                commandRequest.Connection = connection;
+                commandRequest.CommandText = "INSERT INTO " + tableRequest + "(" + attributes + ") VALUES('" + dataInsertion + ")";
+                commandRequest.ExecuteNonQuery();
                 connection.Close();
                 return true;
             }
