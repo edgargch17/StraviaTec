@@ -27,19 +27,18 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-  this.service.PostForm(this.formData,this.rootURL).subscribe(
-   response => {
-      if( response ===true){
-        this.router.navigate(['pagina-de-inicio', this.formData.username.toString()]);
+    this.service.PostForm(this.formData,this.rootURL).subscribe(
+     response => {
+        if( response ===true){
+          this.router.navigate(['pagina-de-inicio', this.formData.username.toString()]);
+        }
+        else{
+          alert("Usuario inválido, por favor verifique los datos");
+        }
+     },
+     error => {
+       alert("f");
       }
-      else{
-        alert("Usuario inválido, por favor verifique los datos");
-      }
-       //this.clients = response;
-   },
-   error => {
-     alert("f");
+     );
     }
-   );
   }
-}

@@ -5,7 +5,7 @@
   <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
 
     <!--input para obtener datos. Existen diferentes tipos, aquí se utilizaron texto, números,
-    fechas y selects-->
+    fechas y selects. También permite subir archivos mediante el método post-->
     <div class="form-group">
       <label for="crearCuentaForm">Nombre:</label>
       <input type="text" id="Nombre" name="Nombre" [(ngModel)]="formData.name" class="form-control"><br>
@@ -21,10 +21,13 @@
       <input type="text" id="Nacionalidad" name="Nacionalidad" [(ngModel)]="formData.nationality" class="form-control"><br>
     </div>
 
+    <!--Permite subir un archivo desde la pc-->
     <div class="form-group">
-        <label for="crearCuentaForm">Foto:</label>
-        <input type="text" id="Foto" name="Foto" [(ngModel)]="formData.photo" class="form-control"><br>
+        <div><label for="crearCuentaForm">Foto:</label></div>
+        <div><input type="file" name="fileToUpload" id="fileToUpload" [(ngModel)]="fileToUpload"></div>
     </div>
+    <br>
+
 
     <div class="form-group">
       <label for="crearCuentaForm">Usuario :</label>

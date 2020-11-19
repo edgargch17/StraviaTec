@@ -23,6 +23,9 @@ export class CrearCuentaComponent implements OnInit {
     password: null,
   };
 
+  //este es el archivo que va a ser enviado
+  fileToUpload: File = null;
+
   //declara "this" de las clases HttpClient y el service de conexión, y el router 
   //para redirigir luego de llenar el form
   constructor(
@@ -32,6 +35,7 @@ export class CrearCuentaComponent implements OnInit {
   
   //url hacia donde se realizará el post
   readonly rootURL = 'http://localhost:55003/api/main/post';
+  readonly photoURL = 'http://localhost:55003/api/main/post/photo';
 
 
   ngOnInit(): void {
@@ -41,7 +45,13 @@ export class CrearCuentaComponent implements OnInit {
   onSubmit(form: NgForm) {
       this.service.PostForm(this.formData,this.rootURL).subscribe(res=>{
       });
+
+      //se realiza un post unicamente con el archivo
+      this.service.PostForm(this.fileToUpload,this.photoURL).subscribe(res=>{
+      });
       alert("sus datos han sido procesados con éxito");
+      
+      //redirige luego de indicar que se procesaron los datos
       this.router.navigate(['']);
   }
 }
