@@ -64,6 +64,7 @@ export class GestionRetosComponent implements OnInit {
     this.service.PostForm(this.formData,this.rootURL).subscribe(res=>{
     });
   }
+
   getchallenge(){
     this.httpClient.get<any>(this.rootURL).subscribe(
         response => {
@@ -86,8 +87,8 @@ export class GestionRetosComponent implements OnInit {
   }
   
   update(form: NgForm) {
-    alert(JSON.stringify(form));
-    this.service.UpdateForm(this.formUpdate,this.rootURL+'id').subscribe(res=>{
+    alert(JSON.stringify(this.formUpdate));
+    this.service.UpdateForm(this.formUpdate,this.rootURL+'/'+this.formUpdate.challenge_identifier.toString()).subscribe(res=>{
     });
     //actualiza la tabla
     window.location.reload();

@@ -19,9 +19,10 @@ export class ConnectionService {
   PostForm(val:any,rootURL){
     return this.http.post<boolean>(rootURL,val);
   }
-  
-  UpdateForm(val:any,URL){
-    return this.http.put<boolean>(URL,val);
+
+  //permite actualizar un valor basado en una id
+  UpdateForm(val:any,updateURL){
+    return this.http.put<boolean>(updateURL,val);
   }
   
 }

@@ -45,7 +45,8 @@
       <br>
   
     </div>
-  
+
+    <button type="button" class="btn btn-outline-success" (click)="save_id('challenge_3')" data-toggle="modal" data-target="#myModalNorm">Actualizar</button>
     <!--carga la ventana modal donde se permite actualizar la tabla-->
     <div class="w-100">
       <br>
@@ -104,28 +105,28 @@
   
                 <div class="form-group">
                   <label for="crearCuentaForm">Nombre del reto</label>
-                  <input type="text" id="name_challenge_up" name="name_challenge_up" [(ngModel)]="formData.name_challenge" class="form-control"><br>
+                  <input type="text" id="name_challenge_up" name="name_challenge_up" [(ngModel)]="formUpdate.name_challenge" class="form-control"><br>
                 </div>
         
                 <div class="form-group">
                   <label for="crearCuentaForm">Descrpición</label>
-                  <input type="text" id="description_up" name="description_up" [(ngModel)]="formData.description" class="form-control"><br>
+                  <input type="text" id="description_up" name="description_up" [(ngModel)]="formUpdate.description" class="form-control"><br>
                 </div>
           
                 <div class="form-group">
                   <label for="crearCuentaForm">Fecha inicial del reto:</label>
-                  <input type="date" id="start_date_up" name="start_date_up" [(ngModel)]="formData.start_date" class="form-control" min="1900-01-01" max="2100-12-31"><br>
+                  <input type="date" id="start_date_up" name="start_date_up" [(ngModel)]="formUpdate.start_date" class="form-control" min="1900-01-01" max="2100-12-31"><br>
                 </div>
         
                 <div class="form-group">
                     <label for="crearCuentaForm">Fecha final del reto:</label>
-                    <input type="date" id="end_date_up" name="end_date_up" [(ngModel)]="formData.end_date" class="form-control" min="1900-01-01" max="2100-12-31"><br>
+                    <input type="date" id="end_date_up" name="end_date_up" [(ngModel)]="formUpdate.end_date" class="form-control" min="1900-01-01" max="2100-12-31"><br>
                   </div>
           
                 <div class="form-group">
                   <label >Actividad</label>
                   <div>
-                    <select id="type_challenge_up" name="type_challenge_up" [(ngModel)]="formData.type_challenge">
+                    <select id="type_challenge_up" name="type_challenge_up" [(ngModel)]="formUpdate.type_challenge">
                       <option value="Correr">Correr</option>
                       <option value="Nadar">Nadar</option>
                       <option value="Ciclismo">Ciclismo</option>
@@ -143,51 +144,3 @@
         </div>
     </div>
 </div>
-
-
-<!--contenido de la ventana modal
-<div id="myModal" class="modal fade" role="dialog" style="display:none;">
-  <div class="modal-dialog">
-      <form #form="ngForm" autocomplete="off" (submit)="update(form)">
-  
-        <div class="form-group">
-          <label for="crearCuentaForm">Nombre del reto</label>
-          <input type="text" id="name_challenge" name="name_challenge" [(ngModel)]="formData.name_challenge" class="form-control"><br>
-        </div>
-
-        <div class="form-group">
-          <label for="crearCuentaForm">Descrpición</label>
-          <input type="text" id="description" name="description" [(ngModel)]="formData.description" class="form-control"><br>
-        </div>
-  
-        <div class="form-group">
-          <label for="crearCuentaForm">Fecha inicial del reto:</label>
-          <input type="date" id="start_date" name="start_date" [(ngModel)]="formData.start_date" class="form-control" min="1900-01-01" max="2100-12-31"><br>
-        </div>
-
-        <div class="form-group">
-            <label for="crearCuentaForm">Fecha final del reto:</label>
-            <input type="date" id="end_date" name="end_date" [(ngModel)]="formData.end_date" class="form-control" min="1900-01-01" max="2100-12-31"><br>
-          </div>
-  
-        <div class="form-group">
-          <label >Actividad</label>
-          <div>
-            <select id="type_challenge" name="type_challenge" [(ngModel)]="formData.type_challenge">
-              <option value="Correr">Correr</option>
-              <option value="Nadar">Nadar</option>
-              <option value="Ciclismo">Ciclismo</option>
-              <option value="Kayak">Kayak</option>
-              <option value="Caminata">Caminata</option>
-            </select> 
-          </div>
-        </div>
-        <br>
-        <br>
-        
-        <button class="btn btn-light btn-lg btn-block page-button" type="submit">Submit</button>
-      </form>
-  </div>
-</div>-->
-
-
