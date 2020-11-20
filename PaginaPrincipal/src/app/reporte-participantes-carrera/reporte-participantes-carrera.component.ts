@@ -3,15 +3,10 @@ import { HttpClient } from '@angular/common/http';
 
 export class Reports{
   constructor(
-      public id: number,
-      public name: string,
-      public lastName: string,
-      public address: string,
-      public phone: number,
-      public sinpe: number,
-      public places: string,
-      public userName: string,
-      public password: number
+      public category_name: string,
+      public full_name: string,
+      public age: number,
+      public race_id: string
   ){
 
   }
@@ -29,9 +24,10 @@ export class ReporteParticipantesCarreraComponent implements OnInit {
 
   constructor(private httpClient: HttpClient) { }
 
-  readonly rootURL = 'http://localhost:55004/api/login';
+  readonly rootURL = 'http://localhost:55004/api/view/race';
 
   ngOnInit(): void {
+      this.getReport();
   }
 
   getReport(){
@@ -39,16 +35,16 @@ export class ReporteParticipantesCarreraComponent implements OnInit {
         response => {
             console.log(response);
             this.reports = response;
-        }
+        },
+        error => {
+          alert("no se logro conectar con la base de datos");
+         }
     );
   }
 
-  delete(id){
-  this.httpClient.delete(this.rootURL+'/'+id).subscribe(
-    response => {}
-  );
-  alert(this.rootURL+'/'+id);
-  }
+  /*delete(id){
+    this.httpClient.delete(this.rootURL+'/'+id).subscribe(
+      response => {}
+    );
+  }*/
 }
-
-
