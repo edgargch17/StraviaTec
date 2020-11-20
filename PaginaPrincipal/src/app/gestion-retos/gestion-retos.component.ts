@@ -44,6 +44,8 @@ export class GestionRetosComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.service.PostForm(this.formData,this.rootURL).subscribe(res=>{
     });
+    this.getchallenge();
+
   }
   getchallenge(){
     this.httpClient.get<any>(this.rootURL).subscribe(
