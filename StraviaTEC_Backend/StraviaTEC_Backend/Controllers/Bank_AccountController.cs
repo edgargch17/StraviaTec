@@ -11,9 +11,7 @@ using Npgsql;
 
 namespace StraviaTEC_Backend.Controllers
 {
-    /// <summary>
-    /// REVISAR COMILLAS E IMPUTS DE METODOS
-    /// </summary>
+    
     [Route("api/bank_account")]
     //[ApiController]
     public class Bank_AccountController : ControllerBase
