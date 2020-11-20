@@ -1,0 +1,42 @@
+
+#map {
+    width: 100%;
+    height: 40%;
+    opacity: 1;
+    transition: opacity 150ms ease-in;
+    display: block;
+}
+
+#indicators {
+    padding: 16px;
+    /*height: 40%;
+    width: 98%;*/
+    overflow-y: auto;
+    display: block;
+}
+
+#botones {
+    /*column-rule: rgb(255, 0, 0) solid 5px;
+    columns: 2;*/
+    text-align: justify;
+}
+
+#botonesCronometro {
+    column-rule: rgb(255, 0, 0) solid 5px;
+    columns: 3;
+    text-align: justify;
+}
+
+#textoGps{
+    column-rule: rgb(255, 0, 0) solid 5px;
+    columns: 2;
+    text-align: justify;
+}
+
+.inputLugarDestino{
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: 2;
+    height: 20%;
+    width: 100%;
+}

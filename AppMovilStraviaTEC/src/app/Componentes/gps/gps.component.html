@@ -1,0 +1,65 @@
+<nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand navbar-dark bg-primary" href="#">StraviaTEC</a>
+</nav>
+
+<!--
+    <agm-map [latitude]="lat" [longitude]="long" [zoom]="zoom" [mapTypeId]="mapTypeId"></agm-map>
+-->
+
+
+<!--...................................Mapa...................................-->
+<div id="map"></div>
+ 
+<!--......................Boton para encontrar ubicacion en tiempo real....................-->
+<!--<button (click)="getPosition()">Posicion en Tiempo Real</button>-->
+
+<!--.....................Columnas para visualizar los tres botones........................-->
+<div id="botones">
+    <!-- 
+    <a class="btn btn-primary btn-lm btn-block" (click)="getPosition()" role="button">Ubicacion</a> 
+    -->
+    <a class="btn btn-primary btn-lm btn-block" (click)="getRoute()" role="button">Trazar Ruta</a> 
+</div>
+
+<!--......................input en donde se ingresa la direccion......................-->
+<div id="textoGps">
+    <input class="form-control" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChangeInicio($event)" placeholder="Ingrese el punto inicial para su ruta..."  />
+    <input class="form-control" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChangeDestino($event)" placeholder="Ingrese el punto destino para su ruta..."  />
+</div>
+
+<!--..........................Botones del Cronometro.................................-->
+<div id="botonesCronometro"> 
+    <a class="btn btn-primary btn-sm btn-block" (click)="getCronometro()" role="button">Iniciar Cronometro</a> 
+    <a class="btn btn-primary btn-sm btn-block" (click)="detenerCronometro()" role="button">Detener Cronometro</a>
+    <a class="btn btn-primary btn-sm btn-block" (click)="reiniciarCronometro()" role="button">Reiniciar Cronometro</a> 
+</div>
+
+
+<!--....................Cronometro.....................-->
+<P class="blockquote text-center btn-block btn btn-primary">
+    <span id="horasT">0</span> :
+    <span id="minutosT">0</span> :
+    <span id="segundosT">0</span>
+</P>
+
+
+<!--......................Boton para encontrar la ruta optima....................-->
+<!--<button (click)="getRoute()" >Obtener Ruta</button>-->
+
+<!--......................Boton para reiniciar el mapa...........................
+<button type="reset">Reiniciar Mapa</button>-->
+
+
+<!--......................Boton para encontrar ubicacion en tiempo real....................-->
+<!--<button (click)="PositionRealTime(1)">Iniciar Ubicacion</button>
+<button (click)="PositionRealTime(0)">Detener Ubicacion</button>-->
+
+
+<!--......................Indicaciones........................................-->
+<div id="indicators"></div>
+
+
+
+
+
+
