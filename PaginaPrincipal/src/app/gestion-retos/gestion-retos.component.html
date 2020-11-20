@@ -70,17 +70,17 @@
                       <th>FECHA INICIAL</th>
                       <th>FECHA FINAL</th>
                       <th>ACTIVIDAD</th>
-                      <th>PATROCINADORES</th>
+                      <th>IDENTIFICADOR</th>
                   </tr>
               </thead>
               <tbody>
                   <tr *ngFor="let challenge of challenges">
-                      <td><span>{{challenge.challenge_name}}</span></td>
-                      <td><span>{{challenge.initial_date}}</span></td>
-                      <td><span>{{challenge.final_date}}</span></td>
-                      <td><span>{{challenge.activity}}</span></td>
-                      <td><span>{{challenge.sponsors}}</span></td>
-                      <button type="button" class="btn btn-outline-danger" (click)="delete(challenge.name)">Eliminar</button>
+                      <td><span>{{challenge.name_challenge}}</span></td>
+                      <td><span>{{challenge.start_date}}</span></td>
+                      <td><span>{{challenge.end_date}}</span></td>
+                      <td><span>{{challenge.activity_id}}</span></td>
+                      <td><span>{{challenge.challenge_identifier}}</span></td>
+                      <button type="button" class="btn btn-outline-danger" (click)="delete(challenge.challenge_identifier)">Eliminar</button>
                   </tr>
               </tbody>
           </table>

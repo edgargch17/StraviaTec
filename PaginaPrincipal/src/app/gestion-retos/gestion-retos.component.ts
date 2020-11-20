@@ -4,16 +4,19 @@ import { HttpClient } from '@angular/common/http';
 import { ConnectionService } from 'src/app/connection.service';
 import { NgForm } from '@angular/forms';
 
-/*export class challenges{
+export class Challenges{
   constructor(
-      public category_name: string,
-      public full_name: string,
-      public age: number,
-      public race_id: string
+      public description: string, 
+      public name_challenge: string,
+      public start_date: Date,
+      public end_date: Date,
+      public type_challenge: string,
+      public activity_id: string,
+      public challenge_identifier :string
   ){
 
   }
-}*/
+}
 
 @Component({
   selector: 'app-gestion-retos',
@@ -33,9 +36,9 @@ export class GestionRetosComponent implements OnInit {
     private httpClient: HttpClient,
     private service : ConnectionService) { } 
 
-  readonly rootURL = 'http://localhost:55003/api/main/post';
+  readonly rootURL = 'http://localhost:55004/api/challenge';
 
-  challenges: GestionRetosModel[];
+  challenges: Challenges[];
 
   ngOnInit(): void {
     this.getchallenge();
@@ -44,8 +47,6 @@ export class GestionRetosComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.service.PostForm(this.formData,this.rootURL).subscribe(res=>{
     });
-    this.getchallenge();
-
   }
   getchallenge(){
     this.httpClient.get<any>(this.rootURL).subscribe(
@@ -65,7 +66,7 @@ export class GestionRetosComponent implements OnInit {
     response => {}
   );
   //actualiza la tabla
-  getReport();
+  window.location.reload();
   }
 
 }
