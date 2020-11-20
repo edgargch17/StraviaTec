@@ -90,10 +90,10 @@ export class GestionRetosComponent implements OnInit {
     });
     //actualiza la tabla
     window.location.reload();
+    return false;
   }
 
   save_id(id){
-    alert('estoy en save id');
     this.formUpdate.challenge_identifier=id;
   }
   
