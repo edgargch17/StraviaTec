@@ -86,6 +86,7 @@ export class GestionRetosComponent implements OnInit {
   }
   
   update(form: NgForm) {
+    alert(JSON.stringify(form));
     this.service.UpdateForm(this.formUpdate,this.rootURL+'id').subscribe(res=>{
     });
     //actualiza la tabla
