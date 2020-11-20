@@ -1,0 +1,34 @@
+<br>
+<br>
+<br>
+<div class = "container">
+    <table class = "table  table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
+                <th>DIRECCION</th>
+                <th>TELEFONO</th>
+                <th>SINPE</th>
+                <th>LUGAR</th>
+                <th>USUARIO</th>
+                <th>PASSWORD</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let report of reports">
+                <td><span>{{report.id}}</span></td>
+                <td><span>{{report.name}}</span></td>
+                <td><span>{{report.lastName}}</span></td>
+                <td><span>{{report.address}}</span></td>
+                <td><span>{{report.phone}}</span></td>
+                <td><span>{{report.sinpe}}</span></td>
+                <td><span>{{report.places}}</span></td>
+                <td><span>{{report.userName}}</span></td>
+                <td><span>{{report.password}}</span></td>
+                <button type="button" class="btn btn-outline-danger" (click)="delete(report.id)">Eliminar</button>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         }
      },
      error => {
-       alert("f");
+       alert("no se logro conectar con la base de datos");
       }
      );
     }

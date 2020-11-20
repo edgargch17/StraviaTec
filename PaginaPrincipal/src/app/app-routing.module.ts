@@ -13,6 +13,10 @@ import { VistaOrganizadorComponent } from './vista-organizador/vista-organizador
 import { PaginaDeInicioComponent } from './pagina-de-inicio/pagina-de-inicio.component';
 import { GestionCarreraComponent } from './gestion-carrera/gestion-carrera.component';
 import { GestionRetosComponent } from './gestion-retos/gestion-retos.component';
+import { ReporteParticipantesCarreraComponent } from './reporte-participantes-carrera/reporte-participantes-carrera.component';
+import { AceptarInscripcionComponent } from './aceptar-inscripcion/aceptar-inscripcion.component';
+
+
 
 //array de las rutas del programa
 const routes: Routes = [
@@ -24,6 +28,8 @@ const routes: Routes = [
   { path: 'vista-organizador', component: VistaOrganizadorComponent},
   { path: 'gestion-carrera', component: GestionCarreraComponent},
   { path: 'gestion-retos', component: GestionRetosComponent},
+  { path: 'aceptar-inscripcion', component: AceptarInscripcionComponent},
+  { path: 'reporte-participantes-carrera', component: ReporteParticipantesCarreraComponent},
   /*{ path: 'publico', component: VistaPublicoComponent,
     children: [
       { path: 'form', component: LoginFormComponent, },     

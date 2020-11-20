@@ -29,6 +29,8 @@ import { ConnectionService } from './connection.service';
 import { PaginaDeInicioComponent } from './pagina-de-inicio/pagina-de-inicio.component';
 import { GestionCarreraComponent } from './gestion-carrera/gestion-carrera.component';
 import { GestionRetosComponent } from './gestion-retos/gestion-retos.component';
+import { ReporteParticipantesCarreraComponent } from './reporte-participantes-carrera/reporte-participantes-carrera.component';
+import { AceptarInscripcionComponent } from './aceptar-inscripcion/aceptar-inscripcion.component';
 
 
 
@@ -46,6 +48,8 @@ import { GestionRetosComponent } from './gestion-retos/gestion-retos.component';
     PaginaDeInicioComponent,
     GestionCarreraComponent,
     GestionRetosComponent,
+    ReporteParticipantesCarreraComponent,
+    AceptarInscripcionComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { HttpClient } from '@angular/common/http';
+import { CrearCuentaModel } from '../crear-cuenta/crear-cuenta-form.model';
 
 declare const google: any;
 
@@ -11,6 +13,11 @@ declare const google: any;
   styleUrls: ['./pagina-de-inicio.component.css']
 })
 export class PaginaDeInicioComponent implements OnInit {
+  //la variable athletes almacena a los atletas amigos del usuario, y info_URL es de 
+  //donde se obtiene esa información
+
+  athletes: CrearCuentaModel[];
+  readonly info_URL = 'http://localhost:55004/api/ahtlete/photo';
 
   //Mapa
   map = null;
@@ -38,17 +45,19 @@ export class PaginaDeInicioComponent implements OnInit {
     componentRestrictions: { country: 'CR'}
   }
 
-  constructor() { 
+  constructor(
+    private httpClient: HttpClient
+  ) { 
     this.lat = 9.8558;
     this.long = -83.9115;
     this.zoom = 17;
     this.mapTypeId = 'roadmap';
 
-
   }
 
   ngOnInit(): void {
     this.loadMap();
+    this.getAthletes();
   }
 
   //Funcion para solicitar address
@@ -127,4 +136,14 @@ export class PaginaDeInicioComponent implements OnInit {
       }
     });
   }
+
+  getAthletes(){
+    this.httpClient.get<any>(this.info_URL).subscribe(
+        response => {
+            console.log(response);
+            this.athletes = JSON.parse(response);
+        }
+    );
+  }
 }
+
