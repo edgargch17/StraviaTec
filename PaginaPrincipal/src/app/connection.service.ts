@@ -17,8 +17,11 @@ export class ConnectionService {
 
   //postea hacia el server
   PostForm(val:any,rootURL){
-
     return this.http.post<boolean>(rootURL,val);
+  }
+  
+  UpdateForm(val:any,URL){
+    return this.http.put<boolean>(URL,val);
   }
   
 }

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ConnectionService } from 'src/app/connection.service';
 import { NgForm } from '@angular/forms';
 
+
 export class Challenges{
   constructor(
       public description: string, 
@@ -25,11 +26,24 @@ export class Challenges{
 })
 export class GestionRetosComponent implements OnInit {
   formData: GestionRetosModel= {
-    challenge_name :null,
-    initial_date: null,
-    final_date: null,
-    activity: null,
-    sponsors: null
+    description: null, 
+    name_challenge: null,
+    start_date: null,
+    end_date: null,
+    type_challenge: null,
+    activity_id: null,
+    challenge_identifier:null
+  };
+
+  //este form es para actualizar la tabla
+  formUpdate: GestionRetosModel= {
+    description: null, 
+    name_challenge: null,
+    start_date: null,
+    end_date: null,
+    type_challenge: null,
+    activity_id: null,
+    challenge_identifier:null
   };
 
   constructor(
@@ -39,6 +53,8 @@ export class GestionRetosComponent implements OnInit {
   readonly rootURL = 'http://localhost:55004/api/challenge';
 
   challenges: Challenges[];
+
+
 
   ngOnInit(): void {
     this.getchallenge();
@@ -68,5 +84,17 @@ export class GestionRetosComponent implements OnInit {
   //actualiza la tabla
   window.location.reload();
   }
+  
+  update(form: NgForm) {
+    this.service.UpdateForm(this.formUpdate,this.rootURL+'id').subscribe(res=>{
+    });
+    //actualiza la tabla
+    window.location.reload();
+  }
 
+  save_id(id){
+    alert('estoy en save id');
+    this.formUpdate.challenge_identifier=id;
+  }
+  
 }
