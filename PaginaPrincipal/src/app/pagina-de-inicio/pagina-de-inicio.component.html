@@ -6,6 +6,15 @@
     <div>
         <br>
         <br>
+        <!--boton de busqueda de atletas-->
+        <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+            <label for="crearCuentaForm">Búsqueda</label>
+            <input type="text" id="search_query" name="search_query" [(ngModel)]="search_query" class="form-control"><br>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#myModalNorm">Search</button>
+        </form>
+
+        <br>
+        <br>
         <div >
             <a class="btn btn-light btn-lg btn-block page-button" [routerLink]="['/crear-cuenta']" role="button">Registrar actividad</a> 
         </div> 
@@ -71,3 +80,35 @@
 
 </div>
 
+
+
+<!--contenido de la ventana modal-->
+<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div class = "container">
+                    <table class = "table  table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>NOMBRE</th>
+                                <th>ACTIVIDADES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let athlete of athletes">
+                                <td><span></span></td>
+                                <td><span>{{search.full_name}}</span></td>
+                                <td><span>{{search.activity}}</span></td>                                
+                                <!--<button type="button" class="btn btn-outline-success" (click)="save_id(challenge.challenge_identifier)" data-toggle="modal" data-target="#myModalNorm">Actualizar</button>-->
+                                <button type="button" class="btn btn-outline-success" >Follow</button>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
