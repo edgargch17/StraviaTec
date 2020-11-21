@@ -50,7 +50,6 @@ export class GPSComponent implements OnInit {
   contador_h: number;
 
 
-
   @ViewChild("placesRef") placesRef : GooglePlaceDirective;
   options = {
     types: [],
@@ -203,7 +202,7 @@ export class GPSComponent implements OnInit {
 
         //console.log(this.directionDisplay.panel.innerText);
         //console.log(this.directionDisplay);
-        this.showSteps(response);
+        this.direccionesRuta(response);
 
       } else {
         alert('su dispositivo no permite la geolocalizacion');
@@ -220,16 +219,19 @@ export class GPSComponent implements OnInit {
   }
 
 
-  showSteps(directionResult) {
+  direccionesRuta(directionResult) {
     var myRoute = directionResult.routes[0].legs[0];
      for (var i = 0; i < myRoute.steps.length; i++) {
       var duration = myRoute.steps[i].duration.text;
       var path = myRoute.steps[i].path;
       var polyline1 = myRoute.steps[i].distance.text;
     }
-    console.log("HOlA 1");
-    console.log(myRoute.steps[17].instructions);
-    console.log("HOlA 2");
+    console.log(myRoute);
+    console.log(myRoute.distance.text);
+
+    //Titulo Direcciones
+    document.getElementById('KilometrajeRuta').innerHTML=myRoute.distance.text;
+    //console.log(myRoute.steps[17].instructions);
    }
 
 
