@@ -4,6 +4,19 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { HttpClient } from '@angular/common/http';
 import { CrearCuentaModel } from '../crear-cuenta/crear-cuenta-form.model';
+import { NgForm } from '@angular/forms';
+import { ConnectionService } from 'src/app/connection.service';
+
+
+export class Search{
+  constructor(
+      public full_name: string, 
+      public activity: string
+  ){
+
+  }
+}
+
 
 declare const google: any;
 
@@ -18,6 +31,13 @@ export class PaginaDeInicioComponent implements OnInit {
 
   athletes: CrearCuentaModel[];
   readonly info_URL = 'http://localhost:55004/api/ahtlete/photo';
+
+  //variables del boton de búsqueda
+  readonly post_search_URL = 'http://localhost:55004/api/ahtlete/photo';
+  readonly result_URL = 'http://localhost:55004/api/ahtlete/photo';
+  search_query : string = null;
+  challenges: Search[];
+  
 
   //Mapa
   map = null;
@@ -46,6 +66,7 @@ export class PaginaDeInicioComponent implements OnInit {
   }
 
   constructor(
+    private service : ConnectionService,
     private httpClient: HttpClient
   ) { 
     this.lat = 9.8558;
@@ -143,6 +164,30 @@ export class PaginaDeInicioComponent implements OnInit {
             console.log(response);
             this.athletes = JSON.parse(response);
         }
+    );
+  }
+
+  onSubmit(form: NgForm) {
+    this.service.PostForm(this.search_query,this.post_search_URL).subscribe(
+      response => {
+          console.log(response);
+          this.search_query = response;
+      },
+      error => {
+        alert("no se logro conectar con la base de datos");
+       }
+  );
+  }
+
+  getsearch(){
+    this.httpClient.get<any>(this.result_URL).subscribe(
+        response => {
+            console.log(response);
+            this.search_query = response;
+        },
+        error => {
+          alert("no se logro conectar con la base de datos");
+         }
     );
   }
 }

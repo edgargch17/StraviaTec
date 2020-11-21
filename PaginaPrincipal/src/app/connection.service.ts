@@ -17,7 +17,7 @@ export class ConnectionService {
 
   //postea hacia el server
   PostForm(val:any,rootURL){
-    return this.http.post<boolean>(rootURL,val);
+    return this.http.post<any>(rootURL,val);
   }
 
   //permite actualizar un valor basado en una id
