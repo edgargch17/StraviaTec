@@ -8,7 +8,7 @@ namespace StraviaTEC_Backend.DataBaseAccess
     static class DataBaseConstants
     {
         /**<summary>COMMAND TO START CONNECTION WITH DATABASE</summary>**/
-        public static string dataBaseConnection= "Server = localhost; User Id = postgres; Password = 2659; Database = company";
+        public static string dataBaseConnection= "Server = localhost; User Id = postgres; Password = 2659; Database = test";
 
         /**<summary>COMMAND LIST THAT WILL MANIPULATE DATA IN DB </summary>**/
         public static string select = "SELECT";

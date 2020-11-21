@@ -33,7 +33,7 @@ export class PaginaDeInicioComponent implements OnInit {
   readonly info_URL = 'http://localhost:55004/api/ahtlete/photo';
 
   //variables del boton de búsqueda
-  readonly post_search_URL = 'http://localhost:55004/api/ahtlete/photo';
+  readonly post_search_URL = 'http://localhost:55004/api/search';
   readonly result_URL = 'http://localhost:55004/api/ahtlete/photo';
   search_query : string = null;
   challenges: Search[];
