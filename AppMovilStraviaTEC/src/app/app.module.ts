@@ -18,6 +18,9 @@ import { IngresoUsuarioComponent } from './componentes/ingreso-usuario/ingreso-u
 import { from } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//............................Librerias para abrir y crear archivos.....................//
+import { NgxFileDropModule } from 'ngx-file-drop';
+import { saveAs } from 'file-saver';
 
 @NgModule({
   declarations: [
@@ -39,8 +42,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     //.....................................//
 
     AppRoutingModule,
+    BrowserAnimationsModule,
 
-    BrowserAnimationsModule
+    //.....................................//
+    NgxFileDropModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

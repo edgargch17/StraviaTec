@@ -3,6 +3,7 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 declare var google;
+declare var saveAs:any;
 
 @Component({
   selector: 'app-gps',
@@ -203,12 +204,12 @@ export class GPSComponent implements OnInit {
         alert('su dispositivo no permite la geolocalizacion');
       }
 
-      //Guarda e Imprime la direcciones en un archivo .txt
-      console.log(this.directionDisplay.panel.textContent);
-      
-      //var blob = new Blob([this.directionDisplay.directions.routes[0].legs[0].steps], {type: "text/plain;charset=utf-8"});
-      //saveAs(blob, "hello world.txt");
+      //Guarda e Imprime la direcciones en un archivo .txt      
+      var blob = new Blob(["Hola soy Edgar"], {type: "text/plain;charset=utf-8"});
+      saveAs(blob, "ruta GPX.txt");
+
       //console.log(this.directionDisplay.directions.routes[0].legs[0].steps);
+      //console.log(this.directionDisplay.panel.textContent);
     });
 
   }
