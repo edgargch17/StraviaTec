@@ -26,7 +26,7 @@ namespace StraviaTEC_Backend.DataBaseAccess
             string query = "SELECT " + attributes + " FROM " + tableRequest;
             NpgsqlCommand connector = new NpgsqlCommand(query, connection);
             //NpgsqlDataReader reader = connector.ExecuteReader();
-            return connector.ExecuteReader();//reader;
+            return connector.ExecuteReader();
         }
 
         public NpgsqlDataReader getSingleRecord(string tableRequest,string conditionAttrib, string keyAttrib)

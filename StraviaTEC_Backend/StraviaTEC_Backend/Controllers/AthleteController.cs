@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using StraviaTEC_Backend.DataBaseAccess;
 using System.Reflection;
 using Npgsql;
+using StraviaTEC_Backend.Tools;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,9 +29,9 @@ namespace StraviaTEC.Controllers
         public IEnumerable<Athlete> getAthletes()
         {
             List<Athlete> athletes = new List<Athlete>();
-            NpgsqlDataReader reader = dataBaseHandler.readFromDataBase(DataBaseConstants.athlete, "*");
             try
             {
+                NpgsqlDataReader reader = dataBaseHandler.readFromDataBase(DataBaseConstants.athlete, "*");
                 while (reader.Read())
                 {
                     athletes.Add(
@@ -58,7 +59,7 @@ namespace StraviaTEC.Controllers
         public Athlete getAthlete(string username)
         {
             Athlete athlete = new Athlete();
-            NpgsqlDataReader reader = dataBaseHandler.getSingleRecord(DataBaseConstants.athlete,"username", username);
+            NpgsqlDataReader reader = dataBaseHandler.getSingleRecord(DataBaseConstants.athlete, "username", username);
             try
             {
                 while (reader.Read())
@@ -104,7 +105,7 @@ namespace StraviaTEC.Controllers
                 }
                 dataBaseHandler.insertDataBase(DataBaseConstants.athlete,
                     "username, password, full_name, nationality, birth_date, photo, age",
-                    athlete.username + "','" + 
+                    athlete.username + "','" +
                     athlete.password + "','" +
                     athlete.full_name + "','" +
                     athlete.nationality + "','" +
@@ -169,7 +170,8 @@ namespace StraviaTEC.Controllers
                 {
                     return BadRequest();
                 }
-            }catch //(Exception e)
+            }
+            catch //(Exception e)
             {
                 return BadRequest();
             }
@@ -179,7 +181,7 @@ namespace StraviaTEC.Controllers
         [HttpDelete("{username}")]
         public IActionResult deleteAthlete(string username)
         {
-            if(dataBaseHandler.deleteFromDataBase(DataBaseConstants.athlete, "username = '" + username + "'"))
+            if (dataBaseHandler.deleteFromDataBase(DataBaseConstants.athlete, "username = '" + username + "'"))
             {
                 return Ok();
             }
@@ -188,5 +190,50 @@ namespace StraviaTEC.Controllers
                 return BadRequest();
             }
         }
+        /////////////////////////////////////////////////////////////////////////////////
+
+        /////////////////////////////////////////////////////////////////////////////////
+
+        [HttpPost("{username}/uploadImage")]
+        public IActionResult handleImage(string username, FileUPloadAPI image)//, [FromQuery] string token)
+        {
+            try
+            {
+                if (image.files.Length > 0)
+                {
+                    string savedLocation = FileManager.saveFile(image, username);
+
+                    if (savedLocation == null)
+                    {
+                        return Forbid("File extension is not valid");
+                    }
+
+                    return Ok("Saved successfully");
+
+                }
+
+                return NotFound("No data to process");
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest("");
+            }
+        }
+
+        /*[HttpGet("getProfilePicture")]
+        public IActionResult getProfilePicture([FromQuery] string token)
+        {
+
+            try
+            {
+                return new FileStreamResult(FileManager.getUserPhoto(token), "application/octet-stream");
+            }
+            catch (Exception)
+            {
+
+                return NotFound("Image was not found");
+            }
+        }/**/
     }
 }

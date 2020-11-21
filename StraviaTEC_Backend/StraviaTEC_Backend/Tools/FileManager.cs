@@ -12,12 +12,12 @@ namespace StraviaTEC_Backend.Tools
         {
             int pointIndex = filename.IndexOf('.');
             string extension = filename.Substring(pointIndex);
-            return extension;
+            return extension.ToLower();
         }
 
-        public static string saveFile(UploadFile file, string token)
+        public static string saveFile(FileUPloadAPI file, string username)
         {
-            string fileName = file.file.FileName;
+            string fileName = file.files.FileName;
             string destination = AppDomain.CurrentDomain.BaseDirectory + "/Database";
 
 
@@ -44,18 +44,18 @@ namespace StraviaTEC_Backend.Tools
                 Directory.CreateDirectory(destination);
             }
 
-            string fullPath = destination + "/" + file.file.FileName;
-
-            bool dbApproved = Connector.savePhoto(token, fullPath);
+            string fullPath = destination + "/" + file.files.FileName;
+            Connector connector = new Connector();
+            bool dbApproved = connector.savePhoto(username, fullPath);
+            //bool dbApproved = Connector.savePhoto(fullPath);
 
             if (dbApproved)
             {
-
                 using (FileStream fileStream = System.IO.File.Create(fullPath))
                 {
-                    file.file.CopyTo(fileStream);
+                    file.files.CopyTo(fileStream);
                     fileStream.Flush();
-                    return destination + "/" + file.file.FileName;
+                    return destination + "/" + file.files.FileName;
                 }
 
             }
@@ -63,7 +63,7 @@ namespace StraviaTEC_Backend.Tools
             return null;
         }
 
-        public static FileStream getUserPhoto(string token)
+        /*public static FileStream getUserPhoto(string token)
         {
             FileStream picture = File.OpenRead(Connector.getPhotoPath(token));
 
@@ -73,6 +73,6 @@ namespace StraviaTEC_Backend.Tools
             }
 
             return null;
-        }
+        }*/
     }
 }

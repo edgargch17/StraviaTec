@@ -36,6 +36,7 @@ namespace StraviaTEC_Backend
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseRouting();
             app.UseCors(app => app.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthorization();
@@ -44,6 +45,8 @@ namespace StraviaTEC_Backend
             {
                 endpoints.MapControllers();
             });
+            
+
         }
     }
 }

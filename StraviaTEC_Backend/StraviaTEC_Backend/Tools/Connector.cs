@@ -7,28 +7,35 @@ using StraviaTEC_Backend.DataBaseAccess;
 
 namespace StraviaTEC_Backend.Tools
 {
-    public static class Connector
+    public class Connector
     {
-        private static NpgsqlConnection connection = new NpgsqlConnection(DataBaseConstants.dataBaseConnection);
+        private DataBaseHandler dataBaseHandler = new DataBaseHandler();
+        //private static NpgsqlConnection connection = new NpgsqlConnection(DataBaseConstants.dataBaseConnection);
 
-            public static bool savePhoto(string token, string path)
+        public bool savePhoto(string username, string path)
+        {
+            try
             {
-                connection.Open();
-                using (NpgsqlCommand cmd = new NpgsqlCommand("\"UploadPhotoPath\"", connection))
-                {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("_token", token);
-                    cmd.Parameters.AddWithValue("_path", path);
-                    bool result = (bool)cmd.ExecuteScalar();
+                dataBaseHandler.updateDataBase(DataBaseConstants.athlete, "photo = '" + path + "'", "username = '" + username + "'");
+                return true;
+            }
+            catch { }
+            return false;
+            /*using (NpgsqlCommand cmd = new NpgsqlCommand("\"UploadPhotoPath\"", connection))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                //cmd.Parameters.AddWithValue("_token", token);
+                cmd.Parameters.AddWithValue("_path", path);
+                bool result = (bool)cmd.ExecuteScalar();
 
-                    connection.Close();
+                connection.Close();
 
-                    return result;
-                }
+                return result;
+            }*/
 
-            }   
+        }/**/
 
-        public static string getPhotoPath(string token)
+        /*public static string getPhotoPath(string token)
         {
             connection.Open();
 
@@ -42,6 +49,6 @@ namespace StraviaTEC_Backend.Tools
 
                 return result;
             }
-        }
+        }*/
     }
 }
