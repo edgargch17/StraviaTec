@@ -3,7 +3,7 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 declare var google;
-declare var saveAs:any;
+//declare var saveAs:any;
 
 @Component({
   selector: 'app-gps',
@@ -200,19 +200,39 @@ export class GPSComponent implements OnInit {
     }, (response, status)  => {
       if (status === google.maps.DirectionsStatus.OK) {
         this.directionDisplay.setDirections(response);
+
+        //console.log(this.directionDisplay.panel.innerText);
+        //console.log(this.directionDisplay);
+        this.showSteps(response);
+
       } else {
         alert('su dispositivo no permite la geolocalizacion');
       }
 
       //Guarda e Imprime la direcciones en un archivo .txt      
-      var blob = new Blob(["Hola soy Edgar"], {type: "text/plain;charset=utf-8"});
-      saveAs(blob, "ruta GPX.txt");
+      //var blob = new Blob(["Hola soy Edgar"], {type: "text/plain;charset=utf-8"});
+      //saveAs(blob, "ruta GPX.txt");
 
       //console.log(this.directionDisplay.directions.routes[0].legs[0].steps);
-      //console.log(this.directionDisplay.panel.textContent);
+  
     });
 
   }
+
+
+  showSteps(directionResult) {
+    var myRoute = directionResult.routes[0].legs[0];
+     for (var i = 0; i < myRoute.steps.length; i++) {
+      var duration = myRoute.steps[i].duration.text;
+      var path = myRoute.steps[i].path;
+      var polyline1 = myRoute.steps[i].distance.text;
+    }
+    console.log("HOlA 1");
+    console.log(myRoute.steps[17].instructions);
+    console.log("HOlA 2");
+   }
+
+
 
   getCronometro(){
 
