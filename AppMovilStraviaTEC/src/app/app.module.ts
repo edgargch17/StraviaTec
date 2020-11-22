@@ -22,6 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { saveAs } from 'file-saver';
 
+//............................Global...........................//
+
 @NgModule({
   declarations: [
     AppComponent,

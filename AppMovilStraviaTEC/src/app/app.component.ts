@@ -7,5 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   titule = "AppMovilStraviaTEC"
+
+  rutaDirecciones: ArrayBuffer;
+
+  constructor() {
+    localStorage.setItem('rutaDirecciones','Direcciones: ');
+  }
+
 }
 
